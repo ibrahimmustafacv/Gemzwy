@@ -87,6 +87,27 @@ footer{text-align:center;color:var(--muted);padding:10px 18px 36px;font-size:14p
 #admin-panel{position:fixed;inset:0;z-index:70;background:var(--bg);color:var(--ink);overflow:auto;padding:18px;display:none}
 #admin-panel.on{display:block}
 .admin-wrap{max-width:850px;margin:0 auto}.admin-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 20px}.admin-card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:16px;margin:12px 0}.admin-card input,.admin-card select{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;margin:6px 0 12px}.admin-action{padding:11px 18px;border-radius:12px;background:var(--ink);color:var(--bg);font-weight:700}.admin-table{width:100%;border-collapse:collapse;font-size:14px}.admin-table th,.admin-table td{padding:9px 6px;border-bottom:1px solid var(--line);text-align:right}.admin-table-wrap{overflow:auto}.admin-note{color:var(--muted);font-size:13px}
+#wallet-panel{position:fixed;inset:0;z-index:70;background:var(--bg);color:var(--ink);overflow:auto;padding:18px;display:none}
+#wallet-panel.on{display:block}
+.wtabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:5px;border-radius:999px;background:var(--panel);border:1px solid var(--line);margin:6px 0 14px}
+.wtab{padding:11px 8px;border-radius:999px;font-weight:700;transition:.2s}
+.wtab[aria-selected="true"]{background:linear-gradient(180deg,#ffd35a,var(--gold));color:#2a1500;box-shadow:0 3px 0 #b97a00}
+.wnum{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px;border-radius:14px;background:var(--bg);border:1.5px dashed var(--gold);margin:6px 0 14px;font-size:22px;font-weight:700;letter-spacing:1px;direction:ltr}
+.wnum button{font-size:13px;padding:7px 12px;border-radius:10px;background:var(--ink);color:var(--bg);font-weight:700;letter-spacing:0}
+.admin-card label{display:block;font-weight:700;font-size:14px}
+.admin-card input[type=file]{padding:10px}
+.wmsg{margin-top:10px;font-size:14px;font-weight:700;min-height:20px}
+.wmsg.ok{color:#12a36b}.wmsg.err{color:#e5383b}
+.wreq{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+.wreq:last-child{border-bottom:0}
+.wreq .tag{padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;background:var(--line)}
+.wreq .tag.pending{background:#ffe08a;color:#5c4100}.wreq .tag.approved{background:#b9f3d6;color:#07502f}.wreq .tag.rejected{background:#ffc9cf;color:#7a0b1b}
+.areq{padding:12px 0;border-bottom:1px solid var(--line)}
+.areq:last-child{border-bottom:0}
+.areq .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+.areq input{margin:0!important;width:150px!important}
+.areq .ok{background:#12a36b;color:#fff}.areq .no{background:#e5383b;color:#fff}
+.areq img{max-width:100%;max-height:340px;border-radius:12px;margin-top:8px;display:block}
 
 [hidden]{display:none!important}
 #game,#wheel{position:fixed;inset:0;z-index:40;display:flex;flex-direction:column;align-items:center;gap:8px;padding:calc(12px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px));background:radial-gradient(ellipse at 50% 28%,#5a31c9 0%,#1b1245 55%,#0d0826 100%);color:#fff;overflow:hidden;opacity:0;transform:scale(.96);transition:.35s}
@@ -264,7 +285,7 @@ body.locked header,body.locked main,body.locked footer{visibility:hidden}
 <!-- Site -->
 <header>
 <div class="brand"><span class="mk" aria-hidden="true"><i style="--c:var(--pink)"></i><i style="--c:var(--gold)"></i><i style="--c:var(--mint)"></i><i style="--c:var(--sky)"></i></span>جيمزاوي</div>
-<div class="hr"><button class="admin-open" id="admin-open" type="button" hidden>لوحة الإدارة</button><div class="userbox" id="userbox" hidden><span id="uname"></span><button id="logout" type="button">خروج</button></div><div class="coins" id="profile-coins" aria-label="رصيدك من العملات">0</div></div>
+<div class="hr"><button class="admin-open" id="admin-open" type="button" hidden>لوحة الإدارة</button><div class="userbox" id="userbox" hidden><span id="uname"></span><button id="logout" type="button">خروج</button></div><button class="admin-open" id="wallet-open" type="button" hidden>المحفظة</button><div class="coins" id="profile-coins" aria-label="رصيدك من العملات">0</div></div>
 </header>
 
 <main class="wrap">
@@ -302,7 +323,37 @@ body.locked header,body.locked main,body.locked footer{visibility:hidden}
  <div class="admin-wrap">
   <div class="admin-head"><div><h2 style="font-family:var(--disp);font-size:30px">لوحة إدارة جيمزاوي</h2><p class="admin-note">إدارة أرصدة النقاط الافتراضية ومتابعة اللاعبين</p></div><button class="admin-action" id="admin-close" type="button">إغلاق</button></div>
   <div class="admin-card"><h3>إضافة نقاط للاعب</h3><label for="admin-phone">رقم هاتف اللاعب</label><input id="admin-phone" type="tel" dir="ltr" placeholder="01xxxxxxxxx"><label for="admin-amount">عدد النقاط</label><input id="admin-amount" type="number" inputmode="numeric" dir="ltr" min="1" max="1000000" step="1" placeholder="اكتب عدد النقاط، مثال 250"><label for="admin-reason">ملاحظة (اختياري)</label><input id="admin-reason" type="text" maxlength="120" placeholder="مثال: نقاط بداية الموسم"><button class="admin-action" id="admin-add" type="button">إضافة النقاط</button><p id="admin-msg" class="admin-note" role="status" style="margin-top:10px"></p></div>
+  <div class="admin-card"><div style="display:flex;justify-content:space-between;gap:12px;align-items:center"><h3>طلبات الإيداع والسحب (قيد الانتظار) <span id="admin-req-count"></span></h3><button class="admin-action" id="admin-req-refresh" type="button">تحديث</button></div><div id="admin-requests" class="admin-note">اضغط تحديث لعرض الطلبات</div><p id="admin-req-msg" class="wmsg" role="status"></p></div>
   <div class="admin-card"><div style="display:flex;justify-content:space-between;gap:12px;align-items:center"><h3>اللاعبون</h3><button class="admin-action" id="admin-refresh" type="button">تحديث</button></div><div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>رقم الهاتف</th><th>النقاط</th><th>النوع</th></tr></thead><tbody id="admin-players"><tr><td colspan="3">اضغط تحديث لعرض اللاعبين</td></tr></tbody></table></div></div>
+ </div>
+</section>
+
+<section id="wallet-panel" aria-label="المحفظة">
+ <div class="admin-wrap">
+  <div class="admin-head"><div><h2 style="font-family:var(--disp);font-size:30px">المحفظة</h2><p class="admin-note">رصيدك الحالي: <b id="wl-bal">0</b> كوينز</p></div><button class="admin-action" id="wallet-close" type="button">إغلاق</button></div>
+  <div class="wtabs" role="tablist"><button class="wtab" type="button" data-wt="deposit" aria-selected="true">إيداع</button><button class="wtab" type="button" data-wt="withdraw" aria-selected="false">سحب</button></div>
+
+  <div class="admin-card" id="wt-deposit">
+   <h3>إيداع رصيد</h3>
+   <p class="admin-note">حوّل المبلغ على رقم محفظة كاش التالي ثم ارفع صورة التحويل:</p>
+   <div class="wnum"><span id="dep-number">…</span><button type="button" id="dep-copy">نسخ</button></div>
+   <label for="dep-amount">المبلغ المحوَّل (بالجنيه)</label><input id="dep-amount" type="number" inputmode="decimal" dir="ltr" min="1" step="any" placeholder="مثال 100" autocomplete="off">
+   <label for="dep-from">الرقم المحوَّل منه</label><input id="dep-from" type="tel" inputmode="tel" dir="ltr" placeholder="01xxxxxxxxx" autocomplete="off">
+   <label for="dep-file">صورة التحويل</label><input id="dep-file" type="file" accept="image/jpeg,image/png,image/webp">
+   <button class="admin-action" id="dep-submit" type="button">تأكيد</button>
+   <p id="dep-msg" class="wmsg" role="status"></p>
+  </div>
+
+  <div class="admin-card" id="wt-withdraw" hidden>
+   <h3>سحب رصيد</h3>
+   <p class="admin-note">المتاح للسحب: <b id="wd-avail">0</b> كوينز. سيتم خصم الكوينز فوراً ويُراجَع الطلب من الإدارة.</p>
+   <label for="wd-amount">عدد الكوينز</label><input id="wd-amount" type="number" inputmode="numeric" dir="ltr" min="1" step="1" placeholder="مثال 500">
+   <label for="wd-wallet">رقم محفظة كاش</label><input id="wd-wallet" type="tel" inputmode="tel" dir="ltr" placeholder="01xxxxxxxxx" autocomplete="off">
+   <button class="admin-action" id="wd-submit" type="button">تأكيد</button>
+   <p id="wd-msg" class="wmsg" role="status"></p>
+  </div>
+
+  <div class="admin-card"><div style="display:flex;justify-content:space-between;gap:12px;align-items:center"><h3>طلباتي</h3><button class="admin-action" id="my-refresh" type="button">تحديث</button></div><div id="my-requests" class="admin-note">لا توجد طلبات</div></div>
  </div>
 </section>
 
@@ -440,7 +491,7 @@ var Auth=window.GZAuth={
   setCoins:function(n){showProfile(Object.assign({},currentProfile,{coins:n}))}
 };
 function showUser(u){
- $('#uname').textContent=u&&u.username||'';$('#userbox').hidden=!u;
+ $('#uname').textContent=u&&u.username||'';$('#userbox').hidden=!u;var wo=$('#wallet-open');if(wo)wo.hidden=!u;
  if(u)$('#logout').textContent='خروج';
 }
 function enterSite(u){
@@ -507,6 +558,153 @@ $('#admin-add').addEventListener('click',async function(){
  try{var r=await getClient().rpc('admin_add_coins',{p_phone:phone,p_amount:amount,p_reason:reason});if(r.error)throw r.error;adminStatus('تمت إضافة '+amount+' نقطة بنجاح.');$('#admin-phone').value='';$('#admin-amount').value='';$('#admin-reason').value='';await refreshAdminPlayers();await loadProfile((await getClient().auth.getUser()).data.user)}
  catch(e){adminStatus('تعذر إضافة النقاط: '+(e.message||'خطأ غير معروف'))}finally{b.disabled=false}
 });
+// ===================== المحفظة (إيداع / سحب) =====================
+// كل البيانات تذهب إلى Supabase (جدول wallet_requests) عبر دوال محمية RPC،
+// ورقم محفظة الإيداع نفسه يُجلب من قاعدة البيانات بعد تسجيل الدخول فلا يظهر في كود الصفحة.
+var walletPanel=$('#wallet-panel'),walletOpen=$('#wallet-open');
+var KIND={deposit:'إيداع',withdraw:'سحب'},ST={pending:'قيد المراجعة',approved:'تمت الموافقة',rejected:'مرفوض'};
+function wMsg(id,t,ok){var e=$('#'+id);if(!e)return;e.textContent=t||'';e.className='wmsg'+(t?(ok?' ok':' err'):'')}
+function fmtDate(s){try{return new Date(s).toLocaleString('ar-EG')}catch(e){return ''}}
+function localPhone(n){return '0'+n.slice(3)} // +201012345678 -> 01012345678
+function curCoins(){return Number(currentProfile&&currentProfile.coins)||0}
+function walletTab(n){
+ [].forEach.call(document.querySelectorAll('.wtab'),function(t){t.setAttribute('aria-selected',t.dataset.wt===n)});
+ $('#wt-deposit').hidden=n!=='deposit';$('#wt-withdraw').hidden=n!=='withdraw';
+}
+[].forEach.call(document.querySelectorAll('.wtab'),function(t){t.addEventListener('click',function(){walletTab(t.dataset.wt)})});
+function walletBalance(){var c=curCoins().toLocaleString('en-US');$('#wl-bal').textContent=c;$('#wd-avail').textContent=c}
+async function loadDepositNumber(){
+ var el=$('#dep-number');
+ try{var r=await getClient().rpc('get_deposit_number');if(r.error)throw r.error;el.textContent=r.data||'—'}
+ catch(e){el.textContent='تعذر تحميل الرقم'}
+}
+async function refreshMyRequests(){
+ var box=$('#my-requests');
+ try{
+  var r=await getClient().from('wallet_requests').select('id,kind,coins,wallet_number,status,created_at').order('created_at',{ascending:false}).limit(20);
+  if(r.error)throw r.error;
+  box.textContent='';
+  if(!r.data||!r.data.length){box.textContent='لا توجد طلبات';return}
+  r.data.forEach(function(x){
+   var d=document.createElement('div');d.className='wreq';
+   var a=document.createElement('span');a.textContent=KIND[x.kind]+(x.coins?' · '+Number(x.coins).toLocaleString('en-US')+' كوينز':'')+' · '+fmtDate(x.created_at);
+   var t=document.createElement('span');t.className='tag '+x.status;t.textContent=ST[x.status]||x.status;
+   d.appendChild(a);d.appendChild(t);box.appendChild(d);
+  });
+ }catch(e){box.textContent='تعذر تحميل الطلبات'}
+}
+if(walletOpen)walletOpen.addEventListener('click',function(){
+ walletPanel.classList.add('on');walletTab('deposit');walletBalance();
+ wMsg('dep-msg','');wMsg('wd-msg','');loadDepositNumber();refreshMyRequests();
+});
+$('#wallet-close').addEventListener('click',function(){walletPanel.classList.remove('on')});
+$('#my-refresh').addEventListener('click',refreshMyRequests);
+$('#dep-copy').addEventListener('click',function(){
+ var t=$('#dep-number').textContent;
+ if(navigator.clipboard&&/^\d+$/.test(t))navigator.clipboard.writeText(t).then(function(){$('#dep-copy').textContent='تم ✔';setTimeout(function(){$('#dep-copy').textContent='نسخ'},1500)},function(){});
+});
+
+var PROOF_EXT={'image/jpeg':'jpg','image/png':'png','image/webp':'webp'};
+$('#dep-submit').addEventListener('click',async function(){
+ var from=normalizePhone($('#dep-from').value),file=$('#dep-file').files[0],amt=Number($('#dep-amount').value),b=$('#dep-submit');
+ if(!(amt>0)||amt>1000000){wMsg('dep-msg','اكتب المبلغ المحوَّل بشكل صحيح.');return}
+ if(!from){wMsg('dep-msg','اكتب رقم المحفظة المحوَّل منها بشكل صحيح.');return}
+ if(!file){wMsg('dep-msg','ارفع صورة التحويل.');return}
+ if(!PROOF_EXT[file.type]){wMsg('dep-msg','الصورة لازم تكون JPG أو PNG أو WEBP.');return}
+ if(file.size>5*1024*1024){wMsg('dep-msg','حجم الصورة أكبر من 5 ميجا.');return}
+ if(!currentUser){wMsg('dep-msg','سجّل الدخول أولاً.');return}
+ b.disabled=true;wMsg('dep-msg','جارٍ رفع الصورة…');
+ try{
+  var path=currentUser.id+'/'+Date.now()+'.'+PROOF_EXT[file.type];
+  var up=await getClient().storage.from('deposit-proofs').upload(path,file,{contentType:file.type,upsert:false});
+  if(up.error)throw up.error;
+  var r=await getClient().rpc('request_deposit',{p_from:localPhone(from),p_amount:amt,p_proof_path:path});
+  if(r.error)throw r.error;
+  wMsg('dep-msg','تم إرسال طلب الإيداع ✔ سيتم إضافة الرصيد بعد مراجعة الإدارة.',true);
+  $('#dep-from').value='';$('#dep-amount').value='';$('#dep-file').value='';refreshMyRequests();
+ }catch(e){wMsg('dep-msg','تعذر إرسال الطلب: '+(e.message||'خطأ غير معروف'))}
+ finally{b.disabled=false}
+});
+
+$('#wd-submit').addEventListener('click',async function(){
+ var amount=Number($('#wd-amount').value),wallet=normalizePhone($('#wd-wallet').value),b=$('#wd-submit');
+ if(!Number.isInteger(amount)||amount<1){wMsg('wd-msg','اكتب عدد كوينز صحيح.');return}
+ if(amount>curCoins()){wMsg('wd-msg','رصيدك غير كافٍ.');return}
+ if(!wallet){wMsg('wd-msg','اكتب رقم محفظة كاش صحيح.');return}
+ if(!confirm('سيتم خصم '+amount+' كوينز من رصيدك الآن وإرسال الطلب للمراجعة. متابعة؟'))return;
+ b.disabled=true;wMsg('wd-msg','جارٍ إرسال الطلب…');
+ try{
+  var r=await getClient().rpc('request_withdraw',{p_amount:amount,p_wallet:localPhone(wallet)});
+  if(r.error)throw r.error;
+  wMsg('wd-msg','تم إرسال طلب السحب ✔ وتم خصم الكوينز وبانتظار موافقة الإدارة.',true);
+  $('#wd-amount').value='';$('#wd-wallet').value='';
+  await loadProfile((await getClient().auth.getUser()).data.user);walletBalance();refreshMyRequests();
+ }catch(e){wMsg('wd-msg','تعذر إرسال الطلب: '+(e.message||'خطأ غير معروف'))}
+ finally{b.disabled=false}
+});
+
+// ---- لوحة الإدارة: قائمة الانتظار ----
+async function processRequest(row,approve,coins,note,btns){
+ btns.forEach(function(x){x.disabled=true});
+ try{
+  var r=await getClient().rpc('admin_process_request',{p_id:row.id,p_approve:approve,p_coins:coins,p_note:note||null});
+  if(r.error)throw r.error;
+  wMsg('admin-req-msg',approve?'تمت الموافقة على الطلب ✔':'تم رفض الطلب'+(row.kind==='withdraw'?' وإرجاع الكوينز للاعب':''),true);
+  await refreshAdminRequests();await refreshAdminPlayers();
+ }catch(e){wMsg('admin-req-msg','تعذر تنفيذ العملية: '+(e.message||'خطأ'));btns.forEach(function(x){x.disabled=false})}
+}
+function mk(tag,txt,cls){var e=document.createElement(tag);if(txt!=null)e.textContent=txt;if(cls)e.className=cls;return e}
+async function refreshAdminRequests(){
+ if(!currentProfile||currentProfile.role!=='admin')return;
+ var box=$('#admin-requests');box.textContent='جارٍ التحميل…';
+ var r=await getClient().from('wallet_requests').select('*').eq('status','pending').order('created_at');
+ if(r.error){box.textContent='تعذر تحميل الطلبات: '+r.error.message;return}
+ box.textContent='';$('#admin-req-count').textContent=r.data.length?'('+r.data.length+')':'';
+ if(!r.data.length){box.textContent='لا توجد طلبات معلّقة';return}
+ r.data.forEach(function(x){
+  var it=mk('div',null,'areq');
+  var head=mk('div',null);
+  head.appendChild(mk('b',KIND[x.kind]));
+  head.appendChild(mk('span',' · لاعب: '+(x.phone||'—')+' · '+fmtDate(x.created_at)));
+  it.appendChild(head);
+  if(x.kind==='withdraw'){
+   it.appendChild(mk('div','الكوينز المخصومة: '+Number(x.coins).toLocaleString('en-US')+' — حوّل إلى محفظة: '+x.wallet_number,'admin-note'));
+  }else{
+   it.appendChild(mk('div','المبلغ المحوَّل: '+(x.amount_egp!=null?Number(x.amount_egp).toLocaleString('en-US')+' جنيه':'—')+' — من رقم: '+x.wallet_number,'admin-note'));
+  }
+  var row=mk('div',null,'row'),inp=null,approve=mk('button','قبول','admin-action ok'),rej=mk('button','رفض','admin-action no');
+  approve.type=rej.type='button';
+  if(x.kind==='deposit'){
+   var proofBtn=mk('button','إعادة تحميل الإيصال','admin-action');proofBtn.type='button';
+   var loadProof=async function(){
+    var sg=await getClient().storage.from('deposit-proofs').createSignedUrl(x.proof_path,600);
+    if(sg.error){wMsg('admin-req-msg','تعذر فتح صورة الإيصال: '+sg.error.message);return}
+    var old=it.querySelector('img');if(old)old.remove();
+    var img=document.createElement('img');img.src=sg.data.signedUrl;img.alt='إيصال التحويل';img.title='اضغط لفتح الصورة كاملة';
+    img.addEventListener('click',function(){window.open(sg.data.signedUrl,'_blank','noopener')});
+    it.insertBefore(img,row);
+   };
+   proofBtn.addEventListener('click',loadProof);
+   loadProof();
+   inp=document.createElement('input');inp.type='number';inp.min='1';inp.step='1';inp.dir='ltr';inp.placeholder='الكوينز المضافة';
+   row.appendChild(proofBtn);row.appendChild(inp);
+  }
+  row.appendChild(approve);row.appendChild(rej);it.appendChild(row);
+  approve.addEventListener('click',function(){
+   var c=null;
+   if(x.kind==='deposit'){c=Number(inp.value);if(!Number.isInteger(c)||c<1){wMsg('admin-req-msg','اكتب عدد الكوينز التي ستُضاف للاعب قبل القبول.');return}}
+   processRequest(x,true,c,null,[approve,rej]);
+  });
+  rej.addEventListener('click',function(){
+   var why=prompt('سبب الرفض (اختياري):');if(why===null)return;
+   processRequest(x,false,null,why,[approve,rej]);
+  });
+  box.appendChild(it);
+ });
+}
+$('#admin-req-refresh').addEventListener('click',function(){refreshAdminRequests().catch(function(e){wMsg('admin-req-msg',e.message)})});
+if(adminOpen)adminOpen.addEventListener('click',function(){refreshAdminRequests().catch(function(){})});
+
 window.gzAfterIntro=async function(){
  var s=await restoreSession();
  if(s&&s.user){showUser(s.user);document.body.classList.remove('locked');window.scrollTo(0,0)}
