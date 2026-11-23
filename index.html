@@ -289,15 +289,15 @@ footer{text-align:center;color:var(--muted);padding:10px 18px 36px;font-size:14p
 <section id="admin-panel" aria-label="لوحة الإدارة">
  <div class="admin-wrap">
   <div class="admin-head"><div><h2 style="font-family:var(--disp);font-size:30px">لوحة إدارة جيمزاوي</h2><p class="admin-note">إدارة أرصدة النقاط الافتراضية ومتابعة اللاعبين</p></div><button class="admin-action" id="admin-close" type="button">إغلاق</button></div>
-  <div class="admin-card"><h3>إضافة نقاط للاعب</h3><label for="admin-phone">رقم هاتف اللاعب</label><input id="admin-phone" type="tel" dir="ltr" placeholder="01xxxxxxxxx"><label for="admin-amount">عدد النقاط</label><select id="admin-amount"><option value="10">10 نقطة</option><option value="20">20 نقطة</option><option value="50">50 نقطة</option><option value="70">70 نقطة</option><option value="100">100 نقطة</option><option value="200">200 نقطة</option><option value="500">500 نقطة</option></select><label for="admin-reason">ملاحظة (اختياري)</label><input id="admin-reason" type="text" maxlength="120" placeholder="مثال: نقاط بداية الموسم"><button class="admin-action" id="admin-add" type="button">إضافة النقاط</button><p id="admin-msg" class="admin-note" role="status" style="margin-top:10px"></p></div>
+  <div class="admin-card"><h3>إضافة نقاط للاعب</h3><label for="admin-phone">رقم هاتف اللاعب</label><input id="admin-phone" type="tel" dir="ltr" placeholder="01xxxxxxxxx"><label for="admin-amount">عدد النقاط</label><input id="admin-amount" type="number" inputmode="numeric" dir="ltr" min="1" max="1000000" step="1" placeholder="اكتب عدد النقاط، مثال 250"><label for="admin-reason">ملاحظة (اختياري)</label><input id="admin-reason" type="text" maxlength="120" placeholder="مثال: نقاط بداية الموسم"><button class="admin-action" id="admin-add" type="button">إضافة النقاط</button><p id="admin-msg" class="admin-note" role="status" style="margin-top:10px"></p></div>
   <div class="admin-card"><div style="display:flex;justify-content:space-between;gap:12px;align-items:center"><h3>اللاعبون</h3><button class="admin-action" id="admin-refresh" type="button">تحديث</button></div><div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>رقم الهاتف</th><th>النقاط</th><th>النوع</th></tr></thead><tbody id="admin-players"><tr><td colspan="3">اضغط تحديث لعرض اللاعبين</td></tr></tbody></table></div></div>
  </div>
 </section>
 
 <div id="toast" role="status" aria-live="polite"></div>
 <div id='shoot' hidden role='dialog' aria-label='تدريب الرماية التكتيكية'><canvas id='sc'></canvas><div class='shud'><button id='sx' aria-label='رجوع'>✕</button><div class='gbal' id='sbal'>0</div><div class='stm' id='stime'>60</div><button id='sm' aria-label='الصوت'>🔊</button></div><div class='sstat' id='sstat'></div><div class='swp'><button class='wp' data-w='p'><svg viewBox='0 0 46 20'><path d='M2 3h34l2 4H2zM6 8h12l-2 11H8z'/></svg><b>مسدس</b>3 طلقات<div class='pr'></div></button><button class='wp' data-w='r'><svg viewBox='0 0 46 20'><path d='M0 7h8l3-3h20l2-2h13v4h-9l-2 3h-9l-1 8h-4l1-8H12l-3 4H0z'/></svg><b>بندقية</b>10 طلقات<div class='pr'></div></button><button class='wp' data-w='s'><svg viewBox='0 0 46 20'><path d='M0 11h8l3-2h6l1-4h10v4h12l1-2h5v3h-3v2H20l-1 5h-3l1-5H10l-3 3H0z'/></svg><b>قناصة</b>15 طلقة<div class='pr'></div></button></div><div class='sammo' id='sammo'></div><div class='scen' id='scen'></div></div>
-<div id='wheel' hidden role='dialog' aria-label='عجلة الحظ'><div class='gtop'><button id='wx' aria-label='رجوع'>✕</button><div class='gbal' id='wbal'>0</div><button id='wm' aria-label='الصوت'>🔊</button></div><h2>عجلة الحظ</h2><div id='wmsg'>لف العجلة وجرّب حظك</div><div class='wh' id='wh'><svg class='ptr' id='wp' viewBox='0 0 34 44'><path d='M17 44L2 14C0 6 8 0 17 0s17 6 15 14z' fill='#fff'/><circle cx='17' cy='14' r='6' fill='#e5383b'/></svg></div><div class='ginfo'>كل اللفات مجانية · لفات إضافية <b id='wf'>0</b></div><div class='gctl'><button class='gbtn' id='ws'>لف العجلة</button></div><div id='wfx'></div></div>
-<div id='game' hidden role='dialog' aria-label='لعبة ثلاث أكواب'><div class='gtop'><button id='gx' aria-label='رجوع'>✕</button><div class='gbal' id='gbal'>0</div><button id='gm' aria-label='الصوت'>🔊</button></div><h2>الكرة تحت أنهي كوب؟</h2><div id='gmsg'>اضغط ابدأ وركّز كويس</div><div class='tbl' id='gt'><div class='floor'></div></div><div class='ginfo'>نمط الحركة <b id='gp'>–</b> من 55 · سلسلة الفوز <b id='gk'>0</b> </div><div class='gctl'><div class='ginfo'>تحديات نقاط افتراضية · ركّز واختار الكوب الصحيح</div><button class='gbtn' id='gs'>ابدأ الجولة</button></div><div id='gfx'></div></div>
+<div id='wheel' hidden role='dialog' aria-label='عجلة الحظ'><div class='gtop'><button id='wx' aria-label='رجوع'>✕</button><div class='gbal' id='wbal'>0</div><button id='wm' aria-label='الصوت'>🔊</button></div><h2>عجلة الحظ</h2><div id='wmsg'>لف العجلة وجرّب حظك</div><div class='wh' id='wh'><svg class='ptr' id='wp' viewBox='0 0 34 44'><path d='M17 44L2 14C0 6 8 0 17 0s17 6 15 14z' fill='#fff'/><circle cx='17' cy='14' r='6' fill='#e5383b'/></svg></div><div class='ginfo'>اللفة بـ 30 كوينز · فرصة كل جائزة 10% · لفات مجانية <b id='wf'>0</b></div><div class='gctl'><button class='gbtn' id='ws'>لف العجلة</button></div><div id='wfx'></div></div>
+<div id='game' hidden role='dialog' aria-label='لعبة ثلاث أكواب'><div class='gtop'><button id='gx' aria-label='رجوع'>✕</button><div class='gbal' id='gbal'>0</div><button id='gm' aria-label='الصوت'>🔊</button></div><h2>الكرة تحت أنهي كوب؟</h2><div id='gmsg'>اضغط ابدأ وركّز كويس</div><div class='tbl' id='gt'><div class='floor'></div></div><div class='ginfo'>نمط الحركة <b id='gp'>–</b> من 55 · سلسلة الفوز <b id='gk'>0</b> </div><div class='gctl'><div class='ginfo'>الجولة بـ 10 كوينز · الفوز بـ 25 كوينز · فرصة الفوز 1 من 3</div><button class='gbtn' id='gs'>ابدأ الجولة</button></div><div id='gfx'></div></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
@@ -411,7 +411,15 @@ var Auth=window.GZAuth={
   logout:async function(){
    if(client){var r=await client.auth.signOut();if(r.error)throw r.error}
    currentUser=null;currentProfile=null;showProfile(null);
-  }
+  },
+  play:async function(g){
+   if(!currentUser)throw fail('سجّل دخولك الأول');
+   var r=await getClient().rpc('gz_play',{p_game:g});
+   if(r.error)throw fail(r.error.message||'تعذر تنفيذ العملية');
+   var d=r.data;d.coins=Number(d.coins);d.prize=Number(d.prize)||0;
+   showProfile(Object.assign({},currentProfile,{coins:d.coins-d.prize}));return d;
+  },
+  setCoins:function(n){showProfile(Object.assign({},currentProfile,{coins:n}))}
 };
 function showUser(u){
  $('#uname').textContent=u&&u.username||'';$('#userbox').hidden=!u;
@@ -476,9 +484,9 @@ $('#admin-refresh').addEventListener('click',async function(){try{await refreshA
 $('#admin-add').addEventListener('click',async function(){
  var phone=normalizePhone($('#admin-phone').value),amount=Number($('#admin-amount').value),reason=$('#admin-reason').value.trim();
  if(!phone){adminStatus('اكتب رقم هاتف مصري صحيحاً.');return}
- if(![10,20,50,70,100,200,500].includes(amount)){adminStatus('قيمة النقاط غير صحيحة.');return}
+ if(!Number.isInteger(amount)||amount<1||amount>1000000){adminStatus('اكتب عدد نقاط صحيح (رقم كامل من 1 إلى 1,000,000).');return}
  var b=$('#admin-add');b.disabled=true;adminStatus('جارٍ إضافة النقاط…');
- try{var r=await getClient().rpc('admin_add_coins',{p_phone:phone,p_amount:amount,p_reason:reason});if(r.error)throw r.error;adminStatus('تمت إضافة '+amount+' نقطة بنجاح.');$('#admin-phone').value='';$('#admin-reason').value='';await refreshAdminPlayers();await loadProfile((await getClient().auth.getUser()).data.user)}
+ try{var r=await getClient().rpc('admin_add_coins',{p_phone:phone,p_amount:amount,p_reason:reason});if(r.error)throw r.error;adminStatus('تمت إضافة '+amount+' نقطة بنجاح.');$('#admin-phone').value='';$('#admin-amount').value='';$('#admin-reason').value='';await refreshAdminPlayers();await loadProfile((await getClient().auth.getUser()).data.user)}
  catch(e){adminStatus('تعذر إضافة النقاط: '+(e.message||'خطأ غير معروف'))}finally{b.disabled=false}
 });
 window.gzAfterIntro=async function(){
@@ -534,7 +542,7 @@ cards.forEach(function(c){c.addEventListener('click',function(){
 <script>
 (function(){
 var $=function(s){return document.querySelector(s)},G=$('#game'),T=$('#gt'),M=$('#gmsg'),BA=$('#gbal'),HB=$('.coins'),FX=$('#gfx'),GS=$('#gs'),GP=$('#gp'),GK=$('#gk');
-var bal=0,shown=0,streak=0,busy=false,pick=false,mu=false,ctx,occ=[0,1,2],px=[0,0,0],last=-1,bag=[],round=0,cups=[];
+var cupWin=false,cupRes=null,bal=0,shown=0,streak=0,busy=false,pick=false,mu=false,ctx,occ=[0,1,2],px=[0,0,0],last=-1,bag=[],round=0,cups=[];
 /* 55 نمط حركة: كل نمط تسلسل من 6 تبديلات بين مواضع الأكواب بدون تكرار متتالي */
 var P=[],PAT=[],PR=[[0,1],[1,2],[0,2]];
 function g(s){if(s.length==6){P.push(s);return}for(var i=0;i<3;i++)if(s[s.length-1]!==i)g(s.concat(i))}
@@ -555,10 +563,9 @@ function mv(el,f,t,y,r){return el.animate([{transform:'translate('+f+'px,0)'},{t
 async function sw(a,b,k,d){var ca=occ[a],cb=occ[b],st=k%3,dy=[44,26,10][st],rt=[8,14,5][st];occ[a]=cb;occ[b]=ca;cups[ca].style.transform='translate('+px[b]+'px,0)';cups[cb].style.transform='translate('+px[a]+'px,0)';cups[ca].style.zIndex=2;cups[cb].style.zIndex=1;snd.whoosh();mv.d=d;await Promise.all([mv(cups[ca],px[a],px[b],-dy,-rt),mv(cups[cb],px[b],px[a],dy,rt)])}
 function syncBets(){}
 async function go(){
-if(busy)return;A();
-
-
-busy=true;pick=false;GS.disabled=true;T.classList.remove('pick');
+if(busy)return;A();busy=true;GS.disabled=true;
+try{cupRes=await window.GZ.play('cups');cupWin=cupRes.win}catch(e){say(e.message||'تعذر الدفع');busy=false;GS.disabled=false;return}
+pick=false;T.classList.remove('pick');
 for(var x=0;x<3;x++)cu(x).classList.remove('up');
 await sleep(650);
 var k=Math.random()*3|0;for(x=0;x<3;x++)bl(x).classList.toggle('on',x===k);
@@ -573,14 +580,13 @@ say('الكرة تحت أنهي كوب؟ اختار!');GS.textContent='اختا�
 }
 async function choose(i){
 if(!pick)return;pick=false;T.classList.remove('pick');
-if(!bag.length)bag=[1,1,0,0,0,0,0,0,0,0].sort(function(){return Math.random()-.5});
-var w=bag.pop(),fin=i;
+var w=cupWin,fin=i;
 if(!w){var o=[0,1,2].filter(function(x){return x!==i});fin=o[Math.random()*2|0]}
 for(var x=0;x<3;x++)bl(x).classList.toggle('on',x===fin);
 snd.tick();cu(i).classList.add('up');await sleep(700);
-if(w){streak++;snd.win();rain();flash();say('🎉 أحسنت! اخترت الكوب الصحيح');if(navigator.vibrate)navigator.vibrate([60,40,60,40,120])}
+if(w){streak++;snd.win();rain();flash();say('🎉 أحسنت! ربحت '+cupRes.prize+' كوينز');if(navigator.vibrate)navigator.vibrate([60,40,60,40,120])}
 else{streak=0;snd.lose();say('فاضية! الكرة كانت تحت كوب تاني');T.classList.add('shake');setTimeout(function(){T.classList.remove('shake')},450);cu(fin).classList.add('up');await sleep(500)}
-GK.textContent=streak;
+GK.textContent=streak;window.GZ.setCoins(cupRes.coins);
 await sleep(w?1300:600);
 for(x=0;x<3;x++)cu(x).classList.add('up');
 await sleep(900);busy=false;GS.disabled=false;GS.textContent='جولة جديدة';
@@ -590,7 +596,7 @@ function plus(n){var e=document.createElement('div');e.className='pl';e.textCont
 function flash(){var e=document.createElement('div');e.className='fl';FX.appendChild(e);setTimeout(function(){e.remove()},950)}
 function open(){G.hidden=false;lay();A();document.body.classList.add('locked');requestAnimationFrame(function(){G.classList.add('on')})}
 function close(){G.classList.remove('on');document.body.classList.remove('locked');setTimeout(function(){G.hidden=true},350)}
-window.openGame=open;window.GZ={get:function(){return (window.GZAuth&&window.GZAuth.user())?Number((document.getElementById('profile-coins').textContent||'0').replace(/,/g,''))||0:0},add:function(n){return false},snd:snd,tone:tone,A:A,mute:function(){mu=!mu;return mu},muted:function(){return mu},freeRound:function(){open();say('🎮 جولة مجانية – اضغط ابدأ')}};
+window.openGame=open;window.GZ={get:function(){return (window.GZAuth&&window.GZAuth.user())?Number((document.getElementById('profile-coins').textContent||'0').replace(/,/g,''))||0:0},play:function(g){return window.GZAuth.play(g)},setCoins:function(n){window.GZAuth.setCoins(n)},snd:snd,tone:tone,A:A,mute:function(){mu=!mu;return mu},muted:function(){return mu},freeRound:function(){open();say('🎮 جولة مجانية – اضغط ابدأ')}};
 GS.onclick=go;$('#gx').onclick=close;
 $('#gm').onclick=function(){mu=!mu;this.textContent=mu?'🔇':'🔊'};
 
@@ -628,7 +634,6 @@ function fmt(v){return Math.round(v).toLocaleString('en-US')}
 function upd(){WB.textContent=fmt(Z.get());WF.textContent=fr}
 function say(t){MS.textContent=t;MS.classList.remove('pp');void MS.offsetWidth;MS.classList.add('pp')}
 function sleep(ms){return new Promise(function(r){setTimeout(r,ms)})}
-function outcome(){if(n<3)return{k:'w',v:[10,20,30][n]};var m=n-3;if(m%3==2)return{k:(m/3|0)%2?'g':'f'};return{k:'x'}}
 function fx(c,t,ms){var e=document.createElement(t);e.className=c;FX.appendChild(e);setTimeout(function(){e.remove()},ms);return e}
 function rain(){for(var i=0;i<40;i++){var c=fx('fc','i',3800),z=18+Math.random()*18;c.style.cssText='left:'+Math.random()*96+'%;width:'+z+'px;height:'+z+'px;--t:'+(1.3+Math.random()*1.4)+'s;--d:'+Math.random()+'s'}}
 /* مؤثرات صوتية: طقطقة مؤشر خشبية + هواء اللف + ارتطام التوقف */
@@ -642,10 +647,10 @@ s.buffer=nbuf(c);s.loop=true;f.type='lowpass';f.frequency.setValueAtTime(250,t);
 g.gain.setValueAtTime(.001,t);g.gain.linearRampToValueAtTime(.11,t+.7);g.gain.exponentialRampToValueAtTime(.001,t+5.9);s.connect(f);f.connect(g);g.connect(c.destination);s.start(t);s.stop(t+6)},
 stop:function(){Z.tone(100,0,.35,'sine',.32,42);sfx.click(0);sfx.click(0)}};
 async function spin(){
-if(busy)return;Z.A();
-if(fr>0)fr--;
-upd();busy=true;WS.disabled=true;
-var o=outcome(),ix=[];SEG.forEach(function(s,i){if(o.k==='w'?s.v===o.v:s.k===o.k)ix.push(i)});
+if(busy)return;Z.A();busy=true;WS.disabled=true;
+var res;try{res=await Z.play('wheel')}catch(e){say(e.message||'تعذر الدفع');busy=false;WS.disabled=false;return}
+fr=res.free_spins-(res.kind==='f'?1:0);upd();
+var o={k:res.kind,v:res.prize},ix=[];SEG.forEach(function(s,i){if(o.k==='w'?s.v===o.v:s.k===o.k)ix.push(i)});
 var i=ix[Math.random()*ix.length|0],jit=(Math.random()-.5)*SA*.6,tg=((-(i*SA+SA/2+jit))%360+360)%360,c=((ang%360)+360)%360,dl=((tg-c)%360+360)%360+360*(6+(Math.random()*3|0));
 n++;try{localStorage.setItem('gz_ws',n)}catch(e){}
 say('لفّ لفّ لفّ… 🤞');W.classList.add('go');sfx.start();
@@ -659,11 +664,11 @@ var q=Math.floor(-ang/SA);
 if(q!==lk){lk=q;PT.classList.remove('k');void PT.offsetWidth;PT.classList.add('k');if(now-lt>(sp>.6?55:25)){lt=now;sfx.click(sp)}}
 if(k<1)requestAnimationFrame(f);else res()})(t0)});
 W.style.transform='';MB.style.opacity=0;W.classList.remove('go');sfx.stop();await sleep(450);
-if(o.k==='w'){Z.snd.win();rain();var p=fx('pl','div',1900);p.textContent='★';fx('fl','div',950);say('🎉 نتيجة اللفة: '+o.v+' نقاط للترفيه');if(navigator.vibrate)navigator.vibrate([60,40,60,40,150])}
-else if(o.k==='f'){fr++;Z.snd.coin();Z.tone(1568,.15,.3,'triangle',.15);say('🎁 لفة مجانية! لف تاني من غير ما تدفع')}
+if(o.k==='w'){Z.snd.win();rain();var p=fx('pl','div',1900);p.textContent='★';fx('fl','div',950);say('🎉 ربحت '+o.v+' كوينز');if(navigator.vibrate)navigator.vibrate([60,40,60,40,150])}
+else if(o.k==='f'){fr=res.free_spins;Z.snd.coin();Z.tone(1568,.15,.3,'triangle',.15);say('🎁 لفة مجانية! لف تاني من غير ما تدفع')}
 else if(o.k==='g'){Z.snd.coin();Z.tone(1568,.15,.3,'triangle',.15);say('🎮 جولة أكواب مجانية!');await sleep(1500);close();Z.freeRound()}
 else{Z.snd.lose();say('حظ أوفر! جرّب تاني');W.classList.add('shake');setTimeout(function(){W.classList.remove('shake')},450)}
-upd();busy=false;WS.disabled=false;
+Z.setCoins(res.coins);upd();busy=false;WS.disabled=false;
 }
 function open(){O.hidden=false;upd();Z.A();document.body.classList.add('locked');requestAnimationFrame(function(){O.classList.add('on')})}
 function close(){O.classList.remove('on');document.body.classList.remove('locked');setTimeout(function(){O.hidden=true},350)}
@@ -799,7 +804,7 @@ C.addEventListener('pointermove',function(e){aim={x:e.clientX,y:e.clientY}});
 window.addEventListener('resize',function(){if(!O.hidden)size()});
 function close(){run=false;O.classList.remove('on');document.body.classList.remove('locked');setTimeout(function(){O.hidden=true},350)}
 window.openShoot=function(){O.hidden=false;Z.A();document.body.classList.add('locked');size();run=false;ents=[];aim=null;rel=0;ammo=WP[cur].mag;wui();ammoUI();HU.textContent=fmt(Z.get());stat();TM.textContent=40;
-intro('تدريب الرماية التكتيكية','التدريب مجاني · الرصاص محدود ومفيش تعبئة<br>درّب دقتك وتجنب إصابة الشخصيات غير المستهدفة<br>الجولة بتخلص أول ما الرصاص يخلص','ادفع 10 وابدأ');
+intro('تدريب الرماية التكتيكية','التدريب مجاني · الرصاص محدود ومفيش تعبئة<br>درّب دقتك وتجنب إصابة الشخصيات غير المستهدفة<br>الجولة بتخلص أول ما الرصاص يخلص','ابدأ التدريب');
 requestAnimationFrame(function(){O.classList.add('on')});if(!going){going=true;last=performance.now();requestAnimationFrame(loop)}};
 $('#sx').onclick=close;$('#sm').onclick=function(){this.textContent=Z.mute()?'🔇':'🔊'};
 })();
