@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>جيمزاوي – ألعاب موبايل بسيطة</title>
+<title>ملك الكاش – من الصفر للمليون</title>
 <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#f1eeff;--ink:#1c1640;--muted:#6a6590;--panel:rgba(255,255,255,.75);--line:rgba(28,22,64,.12);--shadow:rgba(60,30,140,.22);
@@ -509,8 +509,99 @@ body.locked header,body.locked main,body.locked footer{visibility:hidden}
 .hr-pk.win{animation:clw .45s infinite alternate}.hr-pk.dim{opacity:.4}.hr-pk:disabled{pointer-events:none}
 #horse .sm-lcd #hrwin{color:#ffd35a;text-shadow:0 0 8px #ffb703}
 </style>
+<style>
+/* ملك الكاش: لوجو + مطر الفلوس */
+.kcb svg,.mklogo,.brand .mk{direction:ltr}
+#intro .stage{z-index:2}
+.mklogo{width:min(64vw,270px);height:auto;overflow:visible;filter:drop-shadow(0 18px 30px rgba(61,220,151,.35)) drop-shadow(0 6px 0 rgba(0,0,0,.25));opacity:0;transform:scale(.6) rotate(-6deg);animation:pop .8s cubic-bezier(.2,1.5,.4,1) .1s forwards,bob 3s ease-in-out .9s infinite}
+@keyframes bob{50%{transform:translateY(-8px) rotate(1.5deg)}}
+.coinfloat{transform-box:fill-box;transform-origin:center;animation:cspin 2.6s ease-in-out infinite}
+@keyframes cspin{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.25)}}
+.logo,.alogo{background:linear-gradient(100deg,#fff3b0,#ffd23f 35%,#3ddc97 78%,#2fbf71);-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo{animation-delay:.8s}.tag{animation-delay:1.2s;font-size:20px;color:#d9ffe9;font-weight:700}
+.start{animation-delay:1.6s}.bar b{animation-duration:2.2s}
+.brand .mk{display:block;width:46px;height:32px;gap:0}
+.mrain{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+#auth .mrain{position:fixed}
+#auth .abox{position:relative;z-index:1}
+.kcb{position:absolute;top:0;left:var(--l);width:var(--w);aspect-ratio:200/90;opacity:var(--o);will-change:transform;animation:mfall var(--t) linear var(--dl) infinite}
+.kcb svg{display:block;width:100%;height:100%;}
+@keyframes mfall{from{transform:translate3d(0,-25vh,0) rotate(var(--r0))}to{transform:translate3d(var(--dx),125vh,0) rotate(var(--r1))}}
+@keyframes mflip{0%,100%{transform:rotate3d(1,0,0,0deg)}50%{transform:rotate3d(1,0,0,70deg)}}
+@media(prefers-reduced-motion:reduce){.kcb,.kcb svg,.mklogo,.coinfloat{animation:none}.mklogo{opacity:1;transform:none}}
+</style>
 </head>
 <body class="locked">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><linearGradient id="g-b-usd100" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a6d58a"/><stop offset="1" stop-color="#5a9446"/></linearGradient><linearGradient id="g-b-usd20" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b7dd9c"/><stop offset="1" stop-color="#6aa353"/></linearGradient><linearGradient id="g-b-egp200" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e7b66a"/><stop offset="1" stop-color="#a86d2a"/></linearGradient><linearGradient id="g-b-egp100" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a98bd0"/><stop offset="1" stop-color="#5d3d99"/></linearGradient><linearGradient id="g-b-egp50" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7fb0e0"/><stop offset="1" stop-color="#2f66a8"/></linearGradient><linearGradient id="g-b-egp20" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#86c9a0"/><stop offset="1" stop-color="#2d8a5a"/></linearGradient>
+<linearGradient id="shine" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".38"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset=".55" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-color="#000" stop-opacity=".12"/></linearGradient>
+<linearGradient id="g-ctl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b57cff"/><stop offset=".55" stop-color="#7a3fd6"/><stop offset="1" stop-color="#4a208f"/></linearGradient>
+<radialGradient id="g-coin" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#fff6bf"/><stop offset=".55" stop-color="#ffc928"/><stop offset="1" stop-color="#c98500"/></radialGradient></defs>
+<symbol id="b-usd100" viewBox="0 0 200 90"><rect width="200" height="90" rx="6" fill="url(#g-b-usd100)" stroke="#2c5f35" stroke-width="2"/>
+<rect x="6" y="6" width="188" height="78" rx="3" fill="none" stroke="#e6f6d8" stroke-width="1.6" opacity=".85"/>
+<g fill="none" stroke="#e6f6d8" stroke-width=".8" opacity=".5"><ellipse cx="100" cy="45" rx="46" ry="38"/><ellipse cx="100" cy="45" rx="52" ry="40"/><path d="M12 20h36M12 26h30M152 20h36M158 26h30M12 70h36M152 70h36"/></g>
+<ellipse cx="100" cy="45" rx="28" ry="34" fill="#d5ebc3" stroke="#2c5f35" stroke-width="1.6"/>
+<circle cx="100" cy="36" r="10" fill="#7fae6a"/><path d="M78 74q4-22 22-22t22 22q-22 8-44 0z" fill="#7fae6a"/><path d="M92 52l8 8 8-8" fill="#fff" opacity=".8"/>
+<circle cx="38" cy="55" r="12" fill="none" stroke="#e6f6d8" stroke-width="1.5"/><circle cx="162" cy="55" r="12" fill="#e6f6d8" opacity=".85" stroke="#2c5f35" stroke-width="1"/>
+<text x="162" y="61" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="16" fill="#2c5f35">$</text>
+<text x="100" y="15" text-anchor="middle" font-family="Georgia,serif" font-size="6.5" letter-spacing=".6" fill="#eaf8dd">THE UNITED STATES OF AMERICA</text>
+<text x="100" y="83" text-anchor="middle" font-family="Georgia,serif" font-size="6" letter-spacing=".5" fill="#eaf8dd">ONE HUNDRED DOLLARS</text>
+<text x="14" y="30" font-family="Georgia,serif" font-weight="700" font-size="17" fill="#f3fff0">100</text>
+<text x="186" y="80" text-anchor="end" font-family="Georgia,serif" font-weight="700" font-size="17" fill="#f3fff0">100</text>
+<rect width="200" height="90" rx="6" fill="url(#shine)"/></symbol><symbol id="b-usd20" viewBox="0 0 200 90"><rect width="200" height="90" rx="6" fill="url(#g-b-usd20)" stroke="#2c5f35" stroke-width="2"/>
+<rect x="6" y="6" width="188" height="78" rx="3" fill="none" stroke="#e6f6d8" stroke-width="1.6" opacity=".85"/>
+<g fill="none" stroke="#e6f6d8" stroke-width=".8" opacity=".5"><ellipse cx="100" cy="45" rx="46" ry="38"/><ellipse cx="100" cy="45" rx="52" ry="40"/><path d="M12 20h36M12 26h30M152 20h36M158 26h30M12 70h36M152 70h36"/></g>
+<ellipse cx="100" cy="45" rx="28" ry="34" fill="#d5ebc3" stroke="#2c5f35" stroke-width="1.6"/>
+<circle cx="100" cy="36" r="10" fill="#7fae6a"/><path d="M78 74q4-22 22-22t22 22q-22 8-44 0z" fill="#7fae6a"/><path d="M92 52l8 8 8-8" fill="#fff" opacity=".8"/>
+<circle cx="38" cy="55" r="12" fill="none" stroke="#e6f6d8" stroke-width="1.5"/><circle cx="162" cy="55" r="12" fill="#e6f6d8" opacity=".85" stroke="#2c5f35" stroke-width="1"/>
+<text x="162" y="61" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="16" fill="#2c5f35">$</text>
+<text x="100" y="15" text-anchor="middle" font-family="Georgia,serif" font-size="6.5" letter-spacing=".6" fill="#eaf8dd">THE UNITED STATES OF AMERICA</text>
+<text x="100" y="83" text-anchor="middle" font-family="Georgia,serif" font-size="6" letter-spacing=".5" fill="#eaf8dd">ONE HUNDRED DOLLARS</text>
+<text x="14" y="30" font-family="Georgia,serif" font-weight="700" font-size="17" fill="#f3fff0">20</text>
+<text x="186" y="80" text-anchor="end" font-family="Georgia,serif" font-weight="700" font-size="17" fill="#f3fff0">20</text>
+<rect width="200" height="90" rx="6" fill="url(#shine)"/></symbol>
+<symbol id="b-egp200" viewBox="0 0 200 90"><rect width="200" height="90" rx="6" fill="url(#g-b-egp200)" stroke="#6b3f10" stroke-width="2"/>
+<rect x="6" y="6" width="188" height="78" rx="3" fill="none" stroke="#fff" stroke-width="1.4" opacity=".7"/>
+<g fill="none" stroke="#fff" stroke-width=".8" opacity=".4"><path d="M12 22h42M12 28h36M146 22h42M152 28h36M12 68h42M146 68h42"/><circle cx="36" cy="50" r="10"/><circle cx="164" cy="50" r="10"/></g>
+<path d="M68 78V44Q68 12 100 12Q132 12 132 44V78Z" fill="#fff" opacity=".4" stroke="#6b3f10" stroke-width="1.5"/>
+<g fill="#6b3f10" opacity=".78"><path d="M82 78V58q0-12 18-12t18 12v20z"/><rect x="76" y="40" width="4" height="38"/><rect x="120" y="40" width="4" height="38"/><path d="M76 40l2-7 2 7zM120 40l2-7 2 7z"/><path d="M92 46q8-14 16 0z"/><rect x="99" y="30" width="2" height="8"/></g>
+<text x="100" y="9" text-anchor="middle" font-family="Tajawal,Tahoma,sans-serif" font-size="6.5" font-weight="700" fill="#fff">جمهورية مصر العربية</text>
+<text x="100" y="87" text-anchor="middle" font-family="Tajawal,Tahoma,sans-serif" font-size="5.5" fill="#fff">البنك المركزي المصري</text>
+<text x="15" y="32" font-family="Georgia,serif" font-weight="700" font-size="20" fill="#fff">200</text>
+<text x="185" y="78" text-anchor="end" font-family="Georgia,serif" font-weight="700" font-size="20" fill="#fff">200</text>
+<text x="165" y="30" text-anchor="middle" font-family="Tajawal,Tahoma,sans-serif" font-weight="700" font-size="11" fill="#fff">جنيه</text>
+<rect width="200" height="90" rx="6" fill="url(#shine)"/></symbol><symbol id="b-egp100" viewBox="0 0 200 90"><rect width="200" height="90" rx="6" fill="url(#g-b-egp100)" stroke="#3a1f6b" stroke-width="2"/>
+<rect x="6" y="6" width="188" height="78" rx="3" fill="none" stroke="#fff" stroke-width="1.4" opacity=".7"/>
+<g fill="none" stroke="#fff" stroke-width=".8" opacity=".4"><path d="M12 22h42M12 28h36M146 22h42M152 28h36M12 68h42M146 68h42"/><circle cx="36" cy="50" r="10"/><circle cx="164" cy="50" r="10"/></g>
+<path d="M68 78V44Q68 12 100 12Q132 12 132 44V78Z" fill="#fff" opacity=".4" stroke="#3a1f6b" stroke-width="1.5"/>
+<g fill="#3a1f6b" opacity=".78"><path d="M82 78V58q0-12 18-12t18 12v20z"/><rect x="76" y="40" width="4" height="38"/><rect x="120" y="40" width="4" height="38"/><path d="M76 40l2-7 2 7zM120 40l2-7 2 7z"/><path d="M92 46q8-14 16 0z"/><rect x="99" y="30" width="2" height="8"/></g>
+<text x="100" y="9" text-anchor="middle" font-family="Tajawal,Tahoma,sans-serif" font-size="6.5" font-weight="700" fill="#fff">جمهورية مصر العربية</text>
+<text x="100" y="87" text-anchor="middle" font-family="Tajawal,Tahoma,sans-serif" font-size="5.5" fill="#fff">البنك المركزي المصري</text>
+<text x="15" y="32" font-family="Georgia,serif" font-weight="700" font-size="20" fill="#fff">100</text>
+<text x="185" y="78" text-anchor="end" font-family="Georgia,serif" font-weight="700" font-size="20" fill="#fff">100</text>
+<text x="165" y="30" text-anchor="middle" font-family="Tajawal,Tahoma,sans-serif" font-weight="700" font-size="11" fill="#fff">جنيه</text>
+<rect width="200" height="90" rx="6" fill="url(#shine)"/></symbol><symbol id="b-egp50" viewBox="0 0 200 90"><rect width="200" height="90" rx="6" fill="url(#g-b-egp50)" stroke="#14396b" stroke-width="2"/>
+<rect x="6" y="6" width="188" height="78" rx="3" fill="none" stroke="#fff" stroke-width="1.4" opacity=".7"/>
+<g fill="none" stroke="#fff" stroke-width=".8" opacity=".4"><path d="M12 22h42M12 28h36M146 22h42M152 28h36M12 68h42M146 68h42"/><circle cx="36" cy="50" r="10"/><circle cx="164" cy="50" r="10"/></g>
+<path d="M68 78V44Q68 12 100 12Q132 12 132 44V78Z" fill="#fff" opacity=".4" stroke="#14396b" stroke-width="1.5"/>
+<g fill="#14396b" opacity=".78"><path d="M82 78V58q0-12 18-12t18 12v20z"/><rect x="76" y="40" width="4" height="38"/><rect x="120" y="40" width="4" height="38"/><path d="M76 40l2-7 2 7zM120 40l2-7 2 7z"/><path d="M92 46q8-14 16 0z"/><rect x="99" y="30" width="2" height="8"/></g>
+<text x="100" y="9" text-anchor="middle" font-family="Tajawal,Tahoma,sans-serif" font-size="6.5" font-weight="700" fill="#fff">جمهورية مصر العربية</text>
+<text x="100" y="87" text-anchor="middle" font-family="Tajawal,Tahoma,sans-serif" font-size="5.5" fill="#fff">البنك المركزي المصري</text>
+<text x="15" y="32" font-family="Georgia,serif" font-weight="700" font-size="20" fill="#fff">50</text>
+<text x="185" y="78" text-anchor="end" font-family="Georgia,serif" font-weight="700" font-size="20" fill="#fff">50</text>
+<text x="165" y="30" text-anchor="middle" font-family="Tajawal,Tahoma,sans-serif" font-weight="700" font-size="11" fill="#fff">جنيه</text>
+<rect width="200" height="90" rx="6" fill="url(#shine)"/></symbol><symbol id="b-egp20" viewBox="0 0 200 90"><rect width="200" height="90" rx="6" fill="url(#g-b-egp20)" stroke="#14583a" stroke-width="2"/>
+<rect x="6" y="6" width="188" height="78" rx="3" fill="none" stroke="#fff" stroke-width="1.4" opacity=".7"/>
+<g fill="none" stroke="#fff" stroke-width=".8" opacity=".4"><path d="M12 22h42M12 28h36M146 22h42M152 28h36M12 68h42M146 68h42"/><circle cx="36" cy="50" r="10"/><circle cx="164" cy="50" r="10"/></g>
+<path d="M68 78V44Q68 12 100 12Q132 12 132 44V78Z" fill="#fff" opacity=".4" stroke="#14583a" stroke-width="1.5"/>
+<g fill="#14583a" opacity=".78"><path d="M82 78V58q0-12 18-12t18 12v20z"/><rect x="76" y="40" width="4" height="38"/><rect x="120" y="40" width="4" height="38"/><path d="M76 40l2-7 2 7zM120 40l2-7 2 7z"/><path d="M92 46q8-14 16 0z"/><rect x="99" y="30" width="2" height="8"/></g>
+<text x="100" y="9" text-anchor="middle" font-family="Tajawal,Tahoma,sans-serif" font-size="6.5" font-weight="700" fill="#fff">جمهورية مصر العربية</text>
+<text x="100" y="87" text-anchor="middle" font-family="Tajawal,Tahoma,sans-serif" font-size="5.5" fill="#fff">البنك المركزي المصري</text>
+<text x="15" y="32" font-family="Georgia,serif" font-weight="700" font-size="20" fill="#fff">20</text>
+<text x="185" y="78" text-anchor="end" font-family="Georgia,serif" font-weight="700" font-size="20" fill="#fff">20</text>
+<text x="165" y="30" text-anchor="middle" font-family="Tajawal,Tahoma,sans-serif" font-weight="700" font-size="11" fill="#fff">جنيه</text>
+<rect width="200" height="90" rx="6" fill="url(#shine)"/></symbol>
+</svg>
+
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
 <defs>
@@ -532,13 +623,25 @@ body.locked header,body.locked main,body.locked footer{visibility:hidden}
 </svg>
 
 <!-- Intro -->
-<section id="intro" aria-label="افتتاحية جيمزاوي">
+<section id="intro" aria-label="افتتاحية ملك الكاش">
 <div class="stars"></div>
+<div class="mrain" aria-hidden="true"></div>
 <div class="stage">
-<div class="grid5" id="grid5" aria-hidden="true"></div>
+<svg class="mklogo" viewBox="0 0 250 200" role="img" aria-label="شعار ملك الكاش">
+<g transform="rotate(-24 120 100)"><use href="#b-usd100" x="52" y="14" width="136" height="61.2"/></g>
+<g transform="rotate(24 120 100)"><use href="#b-usd100" x="52" y="14" width="136" height="61.2"/></g>
+<use href="#b-usd100" x="52" y="10" width="136" height="61.2"/>
+<path d="M58 118Q58 92 88 92H152Q182 92 182 118L192 158Q196 182 176 182Q162 182 154 166L146 152H94L86 166Q78 182 64 182Q44 182 48 158Z" fill="url(#g-ctl)" stroke="#2a1470" stroke-width="4" stroke-linejoin="round"/>
+<path d="M70 104Q74 98 90 98H152Q166 98 172 106" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".45"/>
+<g fill="#fff" stroke="#2a1470" stroke-width="2"><rect x="76" y="108" width="12" height="34" rx="3"/><rect x="65" y="119" width="34" height="12" rx="3"/></g>
+<circle cx="150" cy="112" r="6.5" fill="#ff4d6d"/><circle cx="168" cy="124" r="6.5" fill="#ffb703"/><circle cx="150" cy="136" r="6.5" fill="#3ddc97"/><circle cx="132" cy="124" r="6.5" fill="#4cc9f0"/>
+<circle cx="118" cy="122" r="12" fill="url(#g-coin)" stroke="#a36a00" stroke-width="1.5"/><text x="118" y="128" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="16" fill="#7a4a00">$</text>
+<g class="coinfloat"><circle cx="206" cy="56" r="24" fill="url(#g-coin)" stroke="#a36a00" stroke-width="3"/><circle cx="206" cy="56" r="18" fill="none" stroke="#fff3b0" stroke-width="1.5" opacity=".8"/><text x="206" y="66" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="28" fill="#7a4a00">$</text></g>
+<circle cx="36" cy="70" r="14" fill="url(#g-coin)" stroke="#a36a00" stroke-width="2.2"/><text x="36" y="76" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="17" fill="#7a4a00">$</text>
+</svg>
+<h2 class="logo">ملك الكاش</h2>
+<p class="tag">من الصفر… للمليون 💰</p>
 <div class="bar"><b></b></div>
-<h2 class="logo">جيمزاوي</h2>
-<p class="tag">ألعاب بسيطة. متعة كبيرة.</p>
 <button class="start" id="start">ابدأ اللعب</button>
 </div>
 </section>
@@ -547,8 +650,9 @@ body.locked header,body.locked main,body.locked footer{visibility:hidden}
 <!-- Auth: تسجيل دخول / إنشاء حساب -->
 <section id="auth" hidden aria-label="تسجيل الدخول">
 <div class="stars"></div>
+<div class="mrain" aria-hidden="true"></div>
 <div class="abox">
-<h2 class="alogo">جيمزاوي</h2>
+<h2 class="alogo">ملك الكاش</h2>
 <p class="asub" id="asub">أهلاً بيك! سجّل دخولك وكمّل لعب</p>
 <div class="atabs" role="tablist">
 <button class="atab" role="tab" id="tab-login" aria-selected="true" data-tab="login">تسجيل دخول</button>
@@ -576,7 +680,7 @@ body.locked header,body.locked main,body.locked footer{visibility:hidden}
 
 <!-- Site -->
 <header>
-<div class="brand"><span class="mk" aria-hidden="true"><i style="--c:var(--pink)"></i><i style="--c:var(--gold)"></i><i style="--c:var(--mint)"></i><i style="--c:var(--sky)"></i></span>جيمزاوي</div>
+<div class="brand"><svg class="mk" viewBox="0 0 64 44" aria-hidden="true"><g transform="rotate(-10 30 20)"><use href="#b-usd100" x="2" y="6" width="50" height="22.5"/></g><use href="#b-usd100" x="8" y="12" width="50" height="22.5"/><circle cx="52" cy="31" r="11" fill="url(#g-coin)" stroke="#a36a00" stroke-width="1.5"/><text x="52" y="37" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="15" fill="#7a4a00">$</text></svg>ملك الكاش</div>
 <div class="hr"><button class="admin-open" id="admin-open" type="button" hidden>لوحة الإدارة</button><div class="userbox" id="userbox" hidden><span id="uname"></span><button id="logout" type="button">خروج</button></div><button class="admin-open" id="wallet-open" type="button" hidden>المحفظة</button><div class="coins" id="profile-coins" aria-label="رصيدك من العملات">0</div></div>
 </header>
 
@@ -617,11 +721,11 @@ body.locked header,body.locked main,body.locked footer{visibility:hidden}
 </section>
 </main>
 
-<footer>© 2026 جيمزاوي · العب في أي وقت</footer>
+<footer>© 2026 ملك الكاش · العب في أي وقت</footer>
 
 <section id="admin-panel" aria-label="لوحة الإدارة">
  <div class="admin-wrap">
-  <div class="admin-head"><div><h2 style="font-family:var(--disp);font-size:30px">لوحة إدارة جيمزاوي</h2><p class="admin-note">إدارة أرصدة النقاط الافتراضية ومتابعة اللاعبين</p></div><button class="admin-action" id="admin-close" type="button">إغلاق</button></div>
+  <div class="admin-head"><div><h2 style="font-family:var(--disp);font-size:30px">لوحة إدارة ملك الكاش</h2><p class="admin-note">إدارة أرصدة النقاط الافتراضية ومتابعة اللاعبين</p></div><button class="admin-action" id="admin-close" type="button">إغلاق</button></div>
   <div class="admin-card"><h3>إضافة نقاط للاعب</h3><label for="admin-phone">رقم هاتف اللاعب</label><input id="admin-phone" type="tel" dir="ltr" placeholder="01xxxxxxxxx"><label for="admin-amount">عدد النقاط</label><input id="admin-amount" type="number" inputmode="numeric" dir="ltr" min="1" max="1000000" step="1" placeholder="اكتب عدد النقاط، مثال 250"><label for="admin-reason">ملاحظة (اختياري)</label><input id="admin-reason" type="text" maxlength="120" placeholder="مثال: نقاط بداية الموسم"><button class="admin-action" id="admin-add" type="button">إضافة النقاط</button><p id="admin-msg" class="admin-note" role="status" style="margin-top:10px"></p></div>
   <div class="admin-card"><div style="display:flex;justify-content:space-between;gap:12px;align-items:center"><h3>طلبات الإيداع والسحب (قيد الانتظار) <span id="admin-req-count"></span></h3><button class="admin-action" id="admin-req-refresh" type="button">تحديث</button></div><div id="admin-requests" class="admin-note">اضغط تحديث لعرض الطلبات</div><p id="admin-req-msg" class="wmsg" role="status"></p></div>
   <div class="admin-card"><div style="display:flex;justify-content:space-between;gap:12px;align-items:center"><h3>اللاعبون</h3><button class="admin-action" id="admin-refresh" type="button">تحديث</button></div><div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>رقم الهاتف</th><th>النقاط</th><th>النوع</th></tr></thead><tbody id="admin-players"><tr><td colspan="3">اضغط تحديث لعرض اللاعبين</td></tr></tbody></table></div></div>
@@ -661,7 +765,7 @@ body.locked header,body.locked main,body.locked footer{visibility:hidden}
 <div id='crash' hidden role='dialog' aria-label='لعبة الطيارة'><div class='gtop'><button id='cx' aria-label='رجوع'>✕</button><div class='gbal' id='cbal'>0</div><button id='cm' aria-label='الصوت'>🔊</button></div><div class='cst'><canvas id='cc'></canvas><div id='chist'></div></div><div class='cpan'><div class='crow' id='cbets'><span>الرهان</span><button class='bt' data-b='10' aria-pressed='true'>10</button><button class='bt' data-b='20' aria-pressed='false'>20</button><button class='bt' data-b='50' aria-pressed='false'>50</button><button class='bt' data-b='100' aria-pressed='false'>100</button><button class='bt' data-b='250' aria-pressed='false'>250</button></div><div class='crow' id='cauto'><span>سحب تلقائي</span><button class='bt' data-a='0' aria-pressed='true'>بدون</button><button class='bt' data-a='1.5' aria-pressed='false'>1.5×</button><button class='bt' data-a='2' aria-pressed='false'>2×</button><button class='bt' data-a='3' aria-pressed='false'>3×</button><button class='bt' data-a='5' aria-pressed='false'>5×</button></div><div id='cinfo'></div><button class='gbtn' id='cbtn'>راهن</button><div id='cbots'></div></div></div>
 <div id="slots" hidden role="dialog" aria-label="سلوت ماشين">
  <div class="gtop"><button id="sx" aria-label="رجوع">✕</button><div class="gbal" id="sbal">0</div><button id="sm" aria-label="الصوت">🔊</button></div>
- <div class="sm-sign">جيمزاوي <b>SLOTS</b></div>
+ <div class="sm-sign">ملك الكاش <b>SLOTS</b></div>
  <div class="sm-free" id="sfree" hidden></div>
  <div class="sm-cab"><div class="sm-lights"></div><div class="sm-win"><canvas id="sc"></canvas></div><div class="sm-lights l2"></div></div>
  <div class="sm-lcd"><div><small>الرهان</small><b id="sbet">10</b></div><div><small>خطوط الدفع</small><b>10</b></div><div><small>آخر ربح</small><b id="swin">0</b></div></div>
@@ -678,7 +782,7 @@ body.locked header,body.locked main,body.locked footer{visibility:hidden}
 
 <div id="roulette" hidden role="dialog" aria-label="روليت">
  <div class="gtop"><button id="rx" aria-label="رجوع">✕</button><div class="gbal" id="rbal">0</div><button id="rm" aria-label="الصوت">🔊</button></div>
- <div class="sm-sign">جيمزاوي <b>ROULETTE</b></div>
+ <div class="sm-sign">ملك الكاش <b>ROULETTE</b></div>
  <div class="rl-stage" id="rstage">
   <div class="rl-dealer" id="rdealer"><svg viewBox="0 0 220 200" aria-hidden="true"><defs><linearGradient id="dh" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a1d0a"/><stop offset="1" stop-color="#12060a"/></linearGradient><radialGradient id="ds" cx=".4" cy=".35"><stop offset="0" stop-color="#ffe6cf"/><stop offset="1" stop-color="#e6ad86"/></radialGradient></defs>
   <path d="M60 200C44 120 50 36 110 24c60 12 66 96 50 176z" fill="url(#dh)"/>
@@ -713,7 +817,7 @@ body.locked header,body.locked main,body.locked footer{visibility:hidden}
 <div id="crystal" hidden role="dialog" aria-label="كريستال">
  <canvas id="cybg"></canvas>
  <div class="gtop cyz"><button id="cyx" aria-label="رجوع">✕</button><div class="gbal" id="cybal">0</div><button id="cym" aria-label="الصوت">🔊</button></div>
- <div class="cy-sign cyz">جيمزاوي <b>CRYSTAL</b></div>
+ <div class="cy-sign cyz">ملك الكاش <b>CRYSTAL</b></div>
  <div class="sm-free cyz" id="cyfree" hidden></div>
  <div class="cy-frame cyz" id="cyframe"><div class="cy-board"><canvas id="cyc"></canvas></div></div>
  <div class="sm-lcd cyz"><div><small>سعر الجولة</small><b>5</b></div><div><small>المضاعف</small><b id="cymul">×1</b></div><div><small>آخر ربح</small><b id="cywin">0</b></div></div>
@@ -727,7 +831,7 @@ body.locked header,body.locked main,body.locked footer{visibility:hidden}
 </div>
 <div id="color" hidden role="dialog" aria-label="توقع اللون">
  <div class="gtop"><button id="clx" aria-label="رجوع">✕</button><div class="gbal" id="clbal">0</div><button id="clm" aria-label="الصوت">🔊</button></div>
- <div class="cl-sign">جيمزاوي <b>COLOR</b></div>
+ <div class="cl-sign">ملك الكاش <b>COLOR</b></div>
  <div class="cl-hist" id="clhist"></div>
  <div class="cl-table"><div id="cldeck"></div><em>➜</em><div id="clslot"></div></div>
  <div class="cl-picks" id="clpicks"></div>
@@ -1148,19 +1252,19 @@ window.gzAfterIntro=async function(){
 </script>
 <script>
 (function(){
-var cols=['#ff4d6d','#ffb703','#3ddc97','#4cc9f0','#9b5de5'];
-// أشكال البلاطات: نمط 5×5 يشبه دراع تحكم
-var mask='0111001110111111111110111011100010'.split('');
-var g=document.getElementById('grid5');
-var pat=['.XXX.','XXXXX','XXXXX','XX.XX','.X.X.'];
-var n=0;
-pat.forEach(function(row,r){row.split('').forEach(function(ch,c){
- var i=document.createElement('i');
- if(ch!=='X'){i.className='off';}
- var a=Math.random()*Math.PI*2,d=240+Math.random()*180;
- i.style.cssText='--c:'+cols[(r+c)%5]+';--x:'+Math.round(Math.cos(a)*d)+'px;--y:'+Math.round(Math.sin(a)*d)+'px;--r:'+Math.round(Math.random()*540-270)+'deg;--d:'+(n*0.045).toFixed(2)+'s';
- g.appendChild(i);n++;
-});});
+// مطر الفلوس: جنيه مصري + دولار
+var kinds=['b-egp200','b-usd100','b-egp100','b-usd20','b-egp50','b-usd100','b-egp20','b-egp200'];
+document.querySelectorAll('.mrain').forEach(function(box){
+ var N=window.innerWidth<600?16:26;
+ for(var k=0;k<N;k++){
+  var el=document.createElement('div');el.className='kcb';
+  var far=Math.random()<.35,w=far?46+Math.random()*34:78+Math.random()*60;
+  var t=(far?13+Math.random()*7:7+Math.random()*6).toFixed(1);
+  el.style.cssText='--l:'+(Math.random()*96-4).toFixed(1)+'%;--w:'+Math.round(w)+'px;--o:'+(far?.45:.95)+';--b:'+(far?'1.5px':'0px')+';--t:'+t+'s;--f:'+(2.4+Math.random()*2.6).toFixed(1)+'s;--dl:-'+(Math.random()*t).toFixed(1)+'s;--dx:'+Math.round(Math.random()*160-80)+'px;--r0:'+Math.round(Math.random()*60-30)+'deg;--r1:'+Math.round(Math.random()*120-60)+'deg';
+  el.innerHTML='<svg viewBox="0 0 200 90"><use href="#'+kinds[k%kinds.length]+'" width="200" height="90"/></svg>';
+  box.appendChild(el);
+ }
+});
 
 var intro=document.getElementById('intro'),done=false;
 function enter(){
@@ -1477,7 +1581,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!O.hidden)c
 })();
 </script>
 <script>
-/* ===================== سلوت ماشين — جيمزاوي ===================== */
+/* ===================== سلوت ماشين — ملك الكاش ===================== */
 (function(){
 'use strict';
 var $=function(s){return document.querySelector(s)},Z=window.GZ,O=$('#slots'),CV=$('#sc'),X=CV.getContext('2d');
@@ -1681,7 +1785,7 @@ window.openSlots=open;
 
 </script>
 <script>
-/* ===================== روليت — جيمزاوي ===================== */
+/* ===================== روليت — ملك الكاش ===================== */
 (function(){
 'use strict';
 var $=function(s){return document.querySelector(s)},Z=window.GZ,O=$('#roulette'),CV=$('#rc'),X=CV.getContext('2d'),T=$('#rtbl');
@@ -1871,7 +1975,7 @@ window.openRoulette=open;
 </script>
 
 <script>
-/* ===================== كريستال — جيمزاوي ===================== */
+/* ===================== كريستال — ملك الكاش ===================== */
 (function(){
 'use strict';
 var $=function(s){return document.querySelector(s)},Z=window.GZ,O=$('#crystal'),CV=$('#cyc'),X=CV.getContext('2d'),BGC=$('#cybg'),BX=BGC.getContext('2d');
@@ -2165,7 +2269,7 @@ window.openCrystal=open;
 
 </script>
 <script>
-/* ===================== توقع اللون — جيمزاوي ===================== */
+/* ===================== توقع اللون — ملك الكاش ===================== */
 (function(){'use strict';
 var $=function(s){return document.querySelector(s)},Z=window.GZ,O=$('#color');
 var COL=[{n:'أحمر',a:'#ff9aa8',b:'#e0143c',d:'#5a0016',x:20},{n:'أخضر',a:'#a5ffd0',b:'#18c26e',d:'#04431f',x:20},{n:'بنفسجي',a:'#e2c4ff',b:'#9b4dff',d:'#2d0a66',x:20}],CH=[33,33,34];
