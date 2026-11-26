@@ -87,6 +87,7 @@ footer{text-align:center;color:var(--muted);padding:10px 18px 36px;font-size:14p
 #admin-panel{position:fixed;inset:0;z-index:70;background:var(--bg);color:var(--ink);overflow:auto;padding:18px;display:none}
 #admin-panel.on{display:block}
 .admin-wrap{max-width:850px;margin:0 auto}.admin-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 20px}.admin-card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:16px;margin:12px 0}.admin-card input,.admin-card select{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;margin:6px 0 12px}.admin-action{padding:11px 18px;border-radius:12px;background:var(--ink);color:var(--bg);font-weight:700}.admin-table{width:100%;border-collapse:collapse;font-size:14px}.admin-table th,.admin-table td{padding:9px 6px;border-bottom:1px solid var(--line);text-align:right}.admin-table-wrap{overflow:auto}.admin-note{color:var(--muted);font-size:13px}
+.dif-row{padding:12px 0;border-bottom:1px solid var(--line)}.dif-row:last-child{border-bottom:0}.dif-top{display:flex;justify-content:space-between;align-items:center;gap:10px;font-weight:700}.dif-val{font-family:var(--disp);font-size:20px;min-width:64px;text-align:left;direction:ltr}.dif-row input[type=range]{width:100%;margin:10px 0 4px;padding:0;border:0;background:transparent;accent-color:#e63946;direction:ltr}.dif-row.dirty .dif-top b::after{content:' •';color:#e63946}.dif-hint{color:var(--muted);font-size:12.5px}.dif-ends{display:flex;justify-content:space-between;color:var(--muted);font-size:11.5px;direction:rtl}.dif-bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.dif-bar .admin-action.ok{background:#12a36b;color:#fff}
 
 /* ===================== سلوت ماشين ===================== */
 #slots{position:fixed;inset:0;z-index:40;display:flex;flex-direction:column;align-items:center;gap:8px;padding:calc(10px + env(safe-area-inset-top,0px)) 12px calc(12px + env(safe-area-inset-bottom,0px));background:radial-gradient(ellipse at 50% 18%,#8a22b8 0%,#34106a 42%,#0b0422 100%);color:#fff;overflow:hidden auto;opacity:0;transform:scale(.96);transition:.35s;user-select:none;-webkit-user-select:none;touch-action:manipulation;--fr1:#ffe08a;--fr2:#ffb703;--fr3:#9a5a00}
@@ -661,6 +662,7 @@ body.locked header,body.locked main,body.locked footer{visibility:hidden}
  <div class="admin-wrap">
   <div class="admin-head"><div><h2 style="font-family:var(--disp);font-size:30px">لوحة إدارة King Cash</h2><p class="admin-note">إدارة أرصدة النقاط الافتراضية ومتابعة اللاعبين</p></div><button class="admin-action" id="admin-close" type="button">إغلاق</button></div>
   <div class="admin-card"><h3>إضافة نقاط للاعب</h3><label for="admin-phone">رقم هاتف اللاعب</label><input id="admin-phone" type="tel" dir="ltr" placeholder="01xxxxxxxxx"><label for="admin-amount">عدد النقاط</label><input id="admin-amount" type="number" inputmode="numeric" dir="ltr" min="1" max="1000000" step="1" placeholder="اكتب عدد النقاط، مثال 250"><label for="admin-reason">ملاحظة (اختياري)</label><input id="admin-reason" type="text" maxlength="120" placeholder="مثال: نقاط بداية الموسم"><button class="admin-action" id="admin-add" type="button">إضافة النقاط</button><p id="admin-msg" class="admin-note" role="status" style="margin-top:10px"></p></div>
+  <div class="admin-card" id="dif-card"><div style="display:flex;justify-content:space-between;gap:12px;align-items:center"><h3>التحكم في صعوبة الألعاب</h3><button class="admin-action" id="dif-reload" type="button">تحديث</button></div><p class="admin-note">من <b>0</b> (سهلة جداً: اللاعب يكسب تقريباً دايماً) إلى <b>100</b> (مستحيل: اللاعب لا يكسب أبداً). الرقم <b>50</b> = لعبة عادلة. الإعداد محفوظ في قاعدة البيانات ويسري فوراً على كل اللاعبين.</p><div class="dif-row" style="background:var(--bg);border-radius:12px;padding:12px;border:1px solid var(--line)"><div class="dif-top"><b>ضبط كل الألعاب مرة واحدة</b><span class="dif-val" id="dif-all-v">50</span></div><input type="range" id="dif-all" min="0" max="100" step="1" value="50" aria-label="صعوبة كل الألعاب"><div class="dif-ends"><span>سهلة جداً</span><span>مستحيلة</span></div></div><div id="dif-list" class="admin-note">جارٍ التحميل…</div><div class="dif-bar"><button class="admin-action ok" id="dif-save" type="button">حفظ التغييرات</button></div><p id="dif-msg" class="admin-note" role="status" style="margin-top:10px"></p></div>
   <div class="admin-card"><div style="display:flex;justify-content:space-between;gap:12px;align-items:center"><h3>طلبات الإيداع والسحب (قيد الانتظار) <span id="admin-req-count"></span></h3><button class="admin-action" id="admin-req-refresh" type="button">تحديث</button></div><div id="admin-requests" class="admin-note">اضغط تحديث لعرض الطلبات</div><p id="admin-req-msg" class="wmsg" role="status"></p></div>
   <div class="admin-card"><div style="display:flex;justify-content:space-between;gap:12px;align-items:center"><h3>اللاعبون</h3><button class="admin-action" id="admin-refresh" type="button">تحديث</button></div><div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>رقم الهاتف</th><th>النقاط</th><th>النوع</th></tr></thead><tbody id="admin-players"><tr><td colspan="3">اضغط تحديث لعرض اللاعبين</td></tr></tbody></table></div></div>
  </div>
@@ -1019,7 +1021,53 @@ async function refreshAdminPlayers(){
  (r.data||[]).forEach(function(x){var tr=document.createElement('tr');[x.phone||'—',String(Number(x.coins)||0),x.role||'player'].forEach(function(v){var td=document.createElement('td');td.textContent=v;tr.appendChild(td)});body.appendChild(tr)});
  if(!r.data||!r.data.length)body.innerHTML='<tr><td colspan="3">لا يوجد لاعبون حتى الآن</td></tr>';
 }
-if(adminOpen)adminOpen.addEventListener('click',async function(){adminPanel.classList.add('on');adminStatus('');try{await refreshAdminPlayers()}catch(e){adminStatus(e.message)}});
+/* ===== التحكم في صعوبة الألعاب (محفوظ في Supabase: game_settings.difficulty) ===== */
+var DIF_NAMES={slots:'🎰 السلوتس',roulette:'🎡 الروليت',color:'🎨 الألوان',hl:'🃏 هاي-لو',coin:'🪙 العملة',mines:'💣 الألغام',horse:'🐎 سباق الخيل',crystal:'💎 الكريستال',cups:'🥤 الأكواب',crash:'✈️ الطيارة',wheel:'🎯 عجلة الحظ',claw:'🦾 المخلب',pen:'⚽ ضربات الجزاء'};
+var DIF_ORDER=['slots','roulette','color','hl','coin','mines','horse','crystal','cups','crash','wheel','claw','pen'];
+var difState={};
+function difLabel(v){return v<=10?'سهلة جداً':v<=30?'سهلة':v<=45?'أسهل من العادي':v<=55?'عادلة':v<=70?'صعبة':v<=90?'صعبة جداً':v<100?'شبه مستحيلة':'مستحيلة'}
+function difHint(v){return difLabel(v)+' — العائد المتوقع للاعب ≈ '+(200-2*v)+'% من الرهان'}
+function difMsg(t){var e=$('#dif-msg');if(e)e.textContent=t||''}
+function difRow(g,v,orig){
+ var d=document.createElement('div');d.className='dif-row';d.dataset.g=g;
+ d.innerHTML='<div class="dif-top"><b></b><span class="dif-val"></span></div><input type="range" min="0" max="100" step="1" aria-label=""><div class="dif-ends"><span>سهلة جداً</span><span>مستحيلة</span></div><div class="dif-hint"></div>';
+ d.querySelector('b').textContent=DIF_NAMES[g]||g;
+ var r=d.querySelector('input');r.value=v;r.setAttribute('aria-label','صعوبة '+(DIF_NAMES[g]||g));
+ var upd=function(){var x=Number(r.value);d.querySelector('.dif-val').textContent=x;d.querySelector('.dif-hint').textContent=difHint(x);d.classList.toggle('dirty',x!==difState[g])};
+ r.addEventListener('input',upd);upd();return d;
+}
+async function loadDifficulty(){
+ var box=$('#dif-list');if(!box)return;
+ if(!currentProfile||currentProfile.role!=='admin')return;
+ box.textContent='جارٍ التحميل…';difMsg('');
+ var r=await getClient().rpc('admin_get_game_difficulty');
+ if(r.error){box.textContent='';difMsg('تعذر تحميل الصعوبة: '+r.error.message+' (هل شغّلت ملف 02_difficulty_dashboard.sql؟)');return}
+ var rows=(r.data||[]).slice().sort(function(a,b){var i=DIF_ORDER.indexOf(a.game),j=DIF_ORDER.indexOf(b.game);return (i<0?99:i)-(j<0?99:j)});
+ difState={};box.textContent='';
+ rows.forEach(function(x){difState[x.game]=Number(x.difficulty);box.appendChild(difRow(x.game,Number(x.difficulty)))});
+ if(!rows.length)box.textContent='لا توجد ألعاب في الجدول.';
+}
+async function saveDifficulty(){
+ var rows=[].slice.call(document.querySelectorAll('#dif-list .dif-row')),ch=rows.filter(function(d){return Number(d.querySelector('input').value)!==difState[d.dataset.g]});
+ if(!ch.length){difMsg('مفيش تغييرات للحفظ.');return}
+ var b=$('#dif-save');b.disabled=true;difMsg('جارٍ الحفظ…');
+ try{
+  for(var i=0;i<ch.length;i++){
+   var g=ch[i].dataset.g,v=Number(ch[i].querySelector('input').value);
+   var r=await getClient().rpc('admin_set_game_difficulty',{p_game:g,p_difficulty:v});
+   if(r.error)throw r.error;
+   difState[g]=v;ch[i].classList.remove('dirty');
+  }
+  difMsg('تم حفظ صعوبة '+ch.length+' لعبة ✔ وتسري فوراً على كل اللاعبين.');
+ }catch(e){difMsg('تعذر الحفظ: '+(e.message||'خطأ'))}finally{b.disabled=false}
+}
+(function(){
+ var all=$('#dif-all'),av=$('#dif-all-v');
+ if(all)all.addEventListener('input',function(){av.textContent=all.value;[].forEach.call(document.querySelectorAll('#dif-list .dif-row input'),function(i){i.value=all.value;i.dispatchEvent(new Event('input'))})});
+ var sv=$('#dif-save');if(sv)sv.addEventListener('click',saveDifficulty);
+ var rl=$('#dif-reload');if(rl)rl.addEventListener('click',function(){loadDifficulty().catch(function(e){difMsg(e.message)})});
+})();
+if(adminOpen)adminOpen.addEventListener('click',async function(){adminPanel.classList.add('on');adminStatus('');loadDifficulty().catch(function(e){difMsg(e.message)});try{await refreshAdminPlayers()}catch(e){adminStatus(e.message)}});
 $('#admin-close').addEventListener('click',function(){adminPanel.classList.remove('on')});
 $('#admin-refresh').addEventListener('click',async function(){try{await refreshAdminPlayers();adminStatus('تم تحديث قائمة اللاعبين')}catch(e){adminStatus(e.message)}});
 $('#admin-add').addEventListener('click',async function(){
@@ -2695,7 +2743,7 @@ function endRace(){
  loadInit(true);$('#hrgo').firstChild.textContent='سباق جديد';
  setTimeout(function(){state='idle';[].forEach.call(O.querySelectorAll('.hr-pk'),function(b){b.classList.remove('win','dim')});lock(false);R2.hidden=false},2600);
  setTimeout(function(){if(state==='idle'&&!racing){resetHorses();$('#hrhud').textContent=''}},9000)}
-async function loadInit(skipHist){try{var d=await window.GZAuth.rpc('gz_horse_init');if(d){if(d.odds&&d.odds.length===6){ODDS=d.odds.map(Number);upd()}if(!skipHist)rh(d.hist||[]);renderTop(d.top||[])}return d}catch(e){return null}}
+async function loadInit(skipHist){try{var d=await window.GZAuth.rpc('gz_horse_init');if(d){/* الدفع ثابت x2 (gz_horse_play) والصعوبة من game_settings */ ODDS=[2,2,2,2,2,2];upd();if(!skipHist)rh(d.hist||[]);renderTop(d.top||[])}return d}catch(e){return null}}
 LV.forEach(function(v,i){var b=document.createElement('button');b.type='button';b.className='rl-chip';b.style.setProperty('--c',LC[i]);b.textContent=v;b.onclick=function(){if(busy||racing)return;bet=v;S.chip();upd()};$('#hrchips').appendChild(b)});
 async function open(){
  O.hidden=false;isOpen=true;document.body.classList.add('locked');$('#hrbal').textContent=fmt(Z.get());
