@@ -816,7 +816,7 @@ body.locked header,body.locked main,body.locked footer{visibility:hidden}
  <div class="sm-lcd"><div><small>الرهان</small><b id="mnbet">10</b></div><div><small>فرصة الصندوق الجاي</small><b id="mnch">76%</b></div><div><small>آخر ربح</small><b id="mnwin">0</b></div></div>
  <div class="sm-ctl"><button class="sm-spin" id="mngo" type="button"><span>ابدأ</span></button></div>
  <div class="ginfo" id="mnmsg" role="status" style="min-height:22px;text-align:center"></div>
- <div class="rl-note">٢٥ صندوق: ٦ قنابل و١٩ جوهرة · افتح ٣ جواهر من غير ما تفتح قنبلة تكسب ضعف الرهان · قنبلة واحدة = خسارة · أماكن القنابل بتتحدد على الخادم قبل ما تفتح أي صندوق</div>
+ <div class="rl-note" id="mnnote">٢٥ صندوق: ٦ قنابل و١٩ جوهرة · افتح ٣ جواهر من غير ما تفتح قنبلة تكسب ضعف الرهان · قنبلة واحدة = خسارة · أماكن القنابل بتتحدد على الخادم قبل ما تفتح أي صندوق</div>
  <div class="sm-top" id="mntop"></div>
  <div id="mnfx"></div>
 </div>
@@ -2438,7 +2438,7 @@ window.openCoin=open;
 <script>
 (function(){'use strict';
 var $=function(s){return document.querySelector(s)},Z=window.GZ,O=$('#mines');
-var NM=6,NEED=3,LV=[10,20,50,70,100],LC=['#7fd4ff','#8dffb0','#ffd35a','#ff9ad0','#ffb36b'];
+var NM=6,NEED=3,MU=2,TI=[{min_bet:0,label:'عادي',chance:.4213,mult:2.1,mines:6},{min_bet:20,label:'متوسط',chance:.3548,mult:2.5,mines:7},{min_bet:50,label:'صعب',chance:.2957,mult:3,mines:8},{min_bet:70,label:'صعب جداً',chance:.1978,mult:4.5,mines:10},{min_bet:100,label:'أسطوري',chance:.1243,mult:7.2,mines:12}],LV=[10,20,50,70,100],LC=['#7fd4ff','#8dffb0','#ffd35a','#ff9ad0','#ffb36b'];
 var GEM='<svg viewBox="0 0 64 64"><path d="M32 4l22 16-22 40L10 20z" fill="#34d4ff"/><path d="M10 20h44L32 60z" fill="#2f6bff"/><path d="M32 4l-9 16h18z" fill="#bffbff"/><path d="M23 20l9 40-22-40z" fill="#7df9ff" opacity=".7"/></svg>';
 var BOMB='<svg viewBox="0 0 64 64"><circle cx="30" cy="38" r="20" fill="#1b1b24"/><circle cx="23" cy="30" r="6" fill="#fff" opacity=".25"/><rect x="26" y="12" width="9" height="8" rx="2" fill="#555"/><path d="M34 14c8-8 14-4 16-10" fill="none" stroke="#c98500" stroke-width="3" stroke-linecap="round"/><path d="M52 2l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="#ffd35a"/></svg>';
 var bet=10,round=null,busy=false,playing=false,isOpen=false,found=0,cells=[],NB=null;
@@ -2457,7 +2457,10 @@ var S={
  win:function(){[523,659,784,1047,1319,1568,2093].forEach(function(f,i){Z.tone(f,i*.09,.4,'triangle',.13);Z.tone(f*2,i*.09,.22,'sine',.04)});for(var i=0;i<14;i++)Z.tone(1500+Math.random()*2200,.5+i*.05,.12,'square',.035)}
 };
 function build(){var B=$('#mnboard');B.textContent='';cells=[];for(var i=0;i<25;i++)(function(i){var b=document.createElement('button');b.type='button';b.className='mc';b.disabled=true;b.innerHTML='<i class="mo"></i><i class="in"></i><i class="bd"></i><i class="ld"></i>';b.onclick=function(){openCell(i)};B.appendChild(b);cells.push(b)})(i)}
-function upd(){$('#mnbet').textContent=bet;$('#mnpw').textContent=fmt(bet*2);
+function tierOf(b){var t=TI[0];TI.forEach(function(x){if(Number(x.min_bet)<=b)t=x});return t}
+async function loadTiers(){try{var d=await window.GZAuth.rpc('gz_tiers_info');if(d&&d.length)TI=d}catch(e){}}
+function upd(){var T=tierOf(bet);if(!playing){NM=Number(T.mines);MU=Number(T.mult)}$('#mnbet').textContent=bet;$('#mnpw').textContent=fmt(bet*MU);
+ var nt=$('#mnnote');if(nt)nt.textContent='٢٥ صندوق: '+NM+' قنابل و'+(25-NM)+' جوهرة · افتح ٣ جواهر من غير ما تفتح قنبلة تكسب ×'+MU+' من الرهان · فرصة الفوز '+Math.round(Number(T.chance)*100)+'% · مستوى الصعوبة: '+T.label+' (كل ما الرهان يكبر الصعوبة بتزيد والجايزة بتكبر) · قنبلة واحدة = خسارة · أماكن القنابل بتتحدد على الخادم قبل ما تفتح أي صندوق';
  [].forEach.call(O.querySelectorAll('.rl-chip'),function(b,i){b.setAttribute('aria-pressed',LV[i]===bet)});
  [].forEach.call(O.querySelectorAll('.pz-mn .gs'),function(g,i){g.classList.toggle('on',i<found)});
  var un=25-found,sf=25-NM-found;$('#mnch').textContent=playing?Math.round(sf/un*100)+'%':'—'}
@@ -2477,7 +2480,7 @@ async function start(){
  busy=true;lockChips(true);Z.A();var before=Z.get();Z.setCoins(before-bet);build();found=0;$('#mnwin').textContent='0';
  var res=null,err=null;try{res=await window.GZAuth.rpc('gz_mines_start',{p_bet:bet})}catch(e){err=e}
  if(err||!res){Z.setCoins(before);msg((err&&err.message)||'تعذر بدء الجولة');busy=false;lockChips(false);return}
- Z.setCoins(Number(res.coins));round={id:res.id,bet:bet};playing=true;S.thud();$('#mngo').firstChild.textContent='جارية…';$('#mngo').disabled=true;
+ Z.setCoins(Number(res.coins));NM=Number(res.mines_count)||NM;MU=Number(res.mult)||MU;round={id:res.id,bet:bet};playing=true;S.thud();$('#mngo').firstChild.textContent='جارية…';$('#mngo').disabled=true;
  msg('افتح الصناديق… دور على ٣ جواهر 💎');upd();setEn(true);busy=false}
 async function openCell(i){
  if(busy||!playing||cells[i].classList.contains('op'))return;
@@ -2504,9 +2507,9 @@ LV.forEach(function(v,i){var b=document.createElement('button');b.type='button';
 async function open(){
  O.hidden=false;isOpen=true;document.body.classList.add('locked');$('#mnbal').textContent=fmt(Z.get());busy=false;
  if(!playing){build();found=0;$('#mngo').firstChild.textContent='ابدأ';lockChips(false);$('#mnwin').textContent='0';msg('حدد رهانك واضغط ابدأ')}
- upd();requestAnimationFrame(function(){O.classList.add('on')});Z.A();
+ upd();loadTiers().then(function(){if(!playing)upd()});requestAnimationFrame(function(){O.classList.add('on')});Z.A();
  var d=await loadInit();if(!d){msg('اللعبة غير مفعّلة بعد — شغّل ملف gz_mines.sql في Supabase');return}
- if(d.round&&!playing){round={id:d.round.id,bet:d.round.bet};bet=Number(d.round.bet);build();(d.round.opened||[]).forEach(function(i){showIn(Number(i),1)});found=(d.round.opened||[]).length;playing=true;lockChips(true);$('#mngo').firstChild.textContent='جارية…';setEn(true);upd();msg('كمّل جولتك المفتوحة 💎')}}
+ if(d.round&&!playing){round={id:d.round.id,bet:d.round.bet};bet=Number(d.round.bet);NM=Number(d.round.mines_count)||NM;MU=Number(d.round.mult)||MU;build();(d.round.opened||[]).forEach(function(i){showIn(Number(i),1)});found=(d.round.opened||[]).length;playing=true;lockChips(true);$('#mngo').firstChild.textContent='جارية…';setEn(true);upd();msg('كمّل جولتك المفتوحة 💎')}}
 function close(){if(busy)return;O.classList.remove('on');document.body.classList.remove('locked');isOpen=false;setTimeout(function(){if(!isOpen)O.hidden=true},350)}
 $('#mngo').onclick=start;$('#mnx').onclick=close;
 $('#mnm').onclick=function(){this.textContent=Z.mute()?'🔇':'🔊'};
