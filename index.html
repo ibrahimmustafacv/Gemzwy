@@ -2666,7 +2666,7 @@ function lab(r){return RK[r]||r}
 function mk(r,s,up){var c=document.createElement('div'),red=s===1||s===2,l=r!=null?lab(r):'';c.className='hc'+(up?' up':'');
  c.innerHTML='<div class="in"><div class="b"></div><div class="f'+(red?' r':'')+'"><u>'+l+'<br>'+(r!=null?SU[s]:'')+'</u><b>'+(r!=null?SU[s]:'')+'</b><u class="x">'+l+'<br>'+(r!=null?SU[s]:'')+'</u></div></div>';return c}
 function deck(){var D=$('#hdeck');D.textContent='';for(var i=0;i<6;i++){var c=mk(null,0,false);c.style.top=(-i*1.6)+'px';c.style.left=(i*.8)+'px';D.appendChild(c)}}
-function rnd(){return{r:2+(Math.random()*13|0),s:Math.random()*4|0}}
+function rnd(){return{r:3+(Math.random()*11|0),s:Math.random()*4|0}}
 function show(c){var h=$('#hcur');h.textContent='';var e=mk(c.r,c.s,true);h.appendChild(e);e.animate([{transform:'scale(.9)'},{transform:'scale(1.06)'},{transform:'none'}],{duration:320});cur=c;$('#hhi').disabled=busy||c.r===14;$('#hlo').disabled=busy||c.r===2}
 function upd(){$('#hbet').textContent=bet;$('#hpb').textContent=fmt(bet);$('#hpw').textContent=fmt(bet);$('#hstk').textContent=streak;
  [].forEach.call(O.querySelectorAll('.rl-chip'),function(b,i){b.setAttribute('aria-pressed',LV[i]===bet)})}
@@ -2699,7 +2699,7 @@ async function play(g){
  else{streak=0;S.lose();burst(10,'#888');$('.hl-table').classList.add('shake');setTimeout(function(){$('.hl-table').classList.remove('shake')},420);msg('ظهر '+lab(nx.r)+(nx.r===cur.r?' — نفس الرقم! خسرت':' — حظ أوفر! جرّب تاني'))}
  upd();await sleep(1500);
  await c.animate([{opacity:1},{opacity:0}],{duration:260,fill:'forwards'}).finished;N.textContent='';
- busy=false;show(nx);lock(false);S.deal()}
+ busy=false;if(nx.r===14||nx.r===2){nx=rnd();msg('🔄 سُحبت ورقة جديدة — اختار أعلى أو أقل')}show(nx);lock(false);S.deal()}
 async function open(){
  O.hidden=false;isOpen=true;document.body.classList.add('locked');streak=0;busy=false;
  $('#hbal').textContent=fmt(Z.get());$('#hwin').textContent='0';deck();$('#hnext').textContent='';show(rnd());rh();upd();msg('اختار أعلى أو أقل وحدد رهانك');
