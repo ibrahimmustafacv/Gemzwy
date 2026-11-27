@@ -657,6 +657,64 @@ body.locked header,body.locked main,body.locked footer{visibility:hidden}
  background:repeating-linear-gradient(90deg,var(--c) 0 12px,#fff 12px 18px)}
 #horse .gz-cust input{border-radius:0;clip-path:polygon(0 0,100% 0,94% 50%,100% 100%,0 100%);border:0;background:rgba(255,255,255,.18);width:140px}
 #horse .gz-cust button{background:#fff;clip-path:polygon(0 0,100% 0,80% 50%,100% 100%,0 100%);min-width:44px}
+</style><style id="gz-fit">
+/* ===== King Cash: كل لعبة في شاشة موبايل واحدة ثابتة بدون سكرول ===== */
+.gz-cust{flex:0 0 auto}.rl-chips .gz-cust{flex:1 0 100%}
+#game,#wheel,#slots,#roulette,#crystal,#color,#hl,#coin,#mines,#horse{height:100vh;height:100dvh;overflow:hidden!important;justify-content:space-evenly;gap:4px!important;padding-top:calc(6px + env(safe-area-inset-top,0px))!important;padding-bottom:calc(8px + env(safe-area-inset-bottom,0px))!important}
+#crash{height:100vh;height:100dvh}
+/* الشريط العلوي (الرصيد) */
+.gtop{flex:none}
+.gtop .gbal{padding:5px 22px;min-width:130px;font-size:19px;border-radius:6px}
+.gtop button{width:36px;height:36px;font-size:16px}
+/* العناوين والنصوص الشارحة تتخفى */
+.rl-note,.cy-note,.sm-top,.rl-hist,.cl-hist,.hl-hist,.cn-hist,.hr-hist,.pz small,#game .ginfo,#wheel .ginfo,#game h2,#wheel h2{display:none!important}
+.sm-sign,.cy-sign,.cl-sign,.hl-sign,.cn-sign,.mn-sign,.hr-sign{font-size:clamp(20px,5.6vw,27px)!important;line-height:1.1}
+.ginfo[id$=msg]{font-size:12.5px;line-height:1.3;min-height:0;max-height:34px;overflow:hidden;text-align:center}
+#gmsg,#wmsg{font-size:14px;min-height:0}
+/* عدادات + أزرار */
+.sm-lcd div{padding:2px 6px}.sm-lcd small{font-size:10px;line-height:1.2}.sm-lcd b{font-size:17px;line-height:1.15}
+.sm-spin{width:72px;height:72px;font-size:19px;line-height:1.1;box-shadow:0 5px 0 #9a4a00,0 10px 20px rgba(255,160,0,.5),inset 0 3px 4px rgba(255,255,255,.8)}
+.sm-rb{width:42px;height:42px;font-size:22px}
+.sm-pill{padding:5px 14px;font-size:13px}
+.sm-ctl{gap:14px}
+.gbtn{padding:9px 34px;font-size:21px}
+.pz{font-size:14px}
+#slots .pz-slots,#roulette .pz-rl,.pz-cy,.pz-hl .pot,.pz-cups,.pz-cl i{padding-top:3px!important;padding-bottom:3px!important}
+.pz-hl .pot b{font-size:19px}.pz-wheel b{width:60px;height:60px;font-size:22px}.pz-wheel i{width:38px;height:38px}
+.pz-coin i{width:38px;height:38px;font-size:15px}.pz-coin i.bg{width:46px;height:46px;font-size:18px}
+/* الرهان اليدوي + الفيشات: أصغر */
+.rl-chips{gap:7px}
+.gz-cust{margin:0!important;gap:5px}
+.gz-cust input{padding:4px 8px!important;font-size:14px!important;width:118px!important}
+.gz-cust button{padding:4px 10px!important;min-width:34px!important}
+#slots .gz-cust{padding:3px 8px;margin:0 auto}
+#game .rl-chip{width:36px;height:42px;font-size:13px;padding-top:4px}
+#wheel .rl-chip{width:44px;height:44px;font-size:13px}
+#roulette .rl-chip{width:40px;height:40px;font-size:13px}
+#crystal .rl-chip{width:44px;height:38px;font-size:13px}
+#color .rl-chip{width:34px;height:46px;font-size:13px}
+#hl .rl-chip{width:50px;height:36px;font-size:13px}
+#coin .rl-chip{width:42px;height:42px;font-size:14px}
+#mines .rl-chip{width:42px;height:38px;font-size:13px}
+#horse .rl-chip{width:48px;height:38px;font-size:13px}
+.rl-chip[aria-pressed=true]{transform:translateY(-4px) scale(1.1)}
+/* المراحل / الألعاب نفسها */
+#game .tbl{height:clamp(170px,31dvh,280px);margin:0}
+#wheel .wh{width:min(82vw,380px,calc(100dvh - 330px));margin:0}
+#wheel .gctl,#game .gctl{gap:6px}
+.cn-stage{height:clamp(140px,24dvh,230px)}
+.cn-coin{width:min(150px,19dvh);height:min(150px,19dvh);margin-top:20px}
+.cn-picks{gap:8px}.cn-pk{padding:5px 10px;font-size:19px}.cn-pk i{width:38px;height:38px}
+.cl-table{height:clamp(96px,14dvh,150px)}.cl-picks{gap:8px;padding-top:2px}.cl-pick{padding:5px 4px}.cl-pick b{font-size:18px}.cl-pick span{font-size:16px}
+.hl-table{height:clamp(120px,19dvh,170px)}.hl-btns{gap:8px}.hl-g{padding:5px 6px;font-size:19px}
+.hl-slot{width:68px;height:96px}.hl-slot.dk{width:56px}
+.mn-board{gap:5px;padding:8px;width:min(100%,430px,calc(100dvh - 330px))}
+.hr-stage{height:clamp(120px,23dvh,300px)}.hr-picks{gap:5px}.hr-pk{padding:4px 0 3px;font-size:21px}.hr-pk small{font-size:10px}
+.rl-tbl{grid-auto-rows:minmax(25px,auto)}
+.rl-bub{font-size:11px;padding:3px 8px}
+.cy-frame{padding:5px}
+#roulette .pz-rl{font-size:12px;white-space:nowrap;padding:2px 10px!important;letter-spacing:0}
+@media (max-height:720px){#roulette .pz-rl,.pz-slots{display:none}.sm-sign,.cy-sign,.cl-sign,.hl-sign,.cn-sign,.mn-sign,.hr-sign{display:none!important}.sm-spin{width:64px;height:64px;font-size:17px}}
 </style>
 
 </head>
@@ -2075,7 +2133,7 @@ async function spin(){
 }
 
 /* ---------- فتح/إغلاق ---------- */
-function layout(){S0=Math.floor(Math.max(210,Math.min(innerWidth-36,310,innerHeight*.33)));dpr=Math.min(2,window.devicePixelRatio||1);
+function layout(){S0=Math.floor(Math.max(125,Math.min(innerWidth-36,310,innerHeight*.2)));dpr=Math.min(2,window.devicePixelRatio||1);
  CV.width=CV.height=Math.round(S0*dpr);CV.style.width=CV.style.height=S0+'px';CV.style.marginTop=Math.round(S0*.4)+'px';
  $('#rdealer').style.width=Math.round(S0*.68)+'px';$('#rstage').style.width=S0+'px';$('#rres').style.top=Math.round(S0*.4+S0/2)+'px';layers()}
 async function open(){
