@@ -964,7 +964,7 @@ body.locked header,body.locked main,body.locked footer{visibility:hidden}
  <div id="sbig" hidden><div class="t"></div><div class="n"></div></div>
  <div id="spay" hidden><h3>جدول الجوائز</h3><div id="spay-list"></div><div id="spay-info"></div><button class="admin-action" id="spay-x" type="button">إغلاق</button></div>
 </div>
-<div id='wheel' hidden role='dialog' aria-label='عجلة الحظ'><div class='gtop'><button id='wx' aria-label='رجوع'>✕</button><div class='gbal' id='wbal'>0</div><button id='wm' aria-label='الصوت'>🔊</button></div><h2>عجلة الحظ</h2><div id='wmsg'>لف العجلة وجرّب حظك</div><div class='wh' id='wh'><svg class='ptr' id='wp' viewBox='0 0 34 44'><path d='M17 44L2 14C0 6 8 0 17 0s17 6 15 14z' fill='#fff'/><circle cx='17' cy='14' r='6' fill='#e5383b'/></svg></div><div class='pz pz-wheel'><i>10</i><em>➜</em><b>‎+10</b></div><div class='ginfo'>اللفة بـ 30 كوينز · المكسب 10 (ورهانك يرجعلك) · 4 خانات رابحة من 10<span hidden><b id='wf'>0</b></span></div><div class='gctl'><button class='gbtn' id='ws'>لف العجلة</button></div><div id='wfx'></div></div>
+<div id='wheel' hidden role='dialog' aria-label='عجلة الحظ'><div class='gtop'><button id='wx' aria-label='رجوع'>✕</button><div class='gbal' id='wbal'>0</div><button id='wm' aria-label='الصوت'>🔊</button></div><h2>عجلة الحظ</h2><div id='wmsg'>لف العجلة وجرّب حظك</div><div class='wh' id='wh'><svg class='ptr' id='wp' viewBox='0 0 34 44'><path d='M17 44L2 14C0 6 8 0 17 0s17 6 15 14z' fill='#fff'/><circle cx='17' cy='14' r='6' fill='#e5383b'/></svg></div><div class='pz pz-wheel'><i>10</i><em>➜</em><b>×10</b></div><div class='ginfo'>اللفة بـ 10 كوينز · جوائز 10–500 · ×2 ×5 ×10 · لفة مجانية · لعبة مجانية<span hidden><b id='wf'>0</b></span></div><div class='gctl'><button class='gbtn' id='ws'>لف العجلة</button></div><div id='wfx'></div></div>
 <div id='game' hidden role='dialog' aria-label='لعبة ثلاث أكواب'><div class='gtop'><button id='gx' aria-label='رجوع'>✕</button><div class='gbal' id='gbal'>0</div><button id='gm' aria-label='الصوت'>🔊</button></div><h2>الكرة تحت أنهي كوب؟</h2><div id='gmsg'>اضغط ابدأ وركّز كويس</div><div class='tbl' id='gt'><div class='floor'></div></div><div class='ginfo'>نمط الحركة <b id='gp'>–</b> من 55 · سلسلة الفوز <b id='gk'>0</b> </div><div class='gctl'><div class='pz pz-cups'>ادفع 10 · تكسب 10</div><div class='ginfo'>الجولة بـ 10 كوينز · المكسب 10 كوينز (ورهانك يرجعلك) · فرصة الفوز 1 من 3</div><button class='gbtn' id='gs'>ابدأ الجولة</button></div><div id='gfx'></div></div>
 
 <div id="roulette" hidden role="dialog" aria-label="روليت">
@@ -1618,7 +1618,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!G.hidden)c
 (function(){
 var $=function(s){return document.querySelector(s)},Z=window.GZ,NS='http://www.w3.org/2000/svg',O=$('#wheel'),W=$('#wh'),MS=$('#wmsg'),WB=$('#wbal'),WS=$('#ws'),WF=$('#wf'),PT=$('#wp'),FX=$('#wfx'),MB=document.createElement('div');
 MB.className='mb';
-var SEG=[{t:['×2'],v:60,c:'#ffb703',x:'#2a1500'},{t:['حظ','أوفر'],k:'x',c:'#3b2a8f'},{t:['×2'],v:60,c:'#ff4d6d'},{t:['حظ','أوفر'],k:'x',c:'#2b1c6b'},{t:['حظ','أوفر'],k:'x',c:'#3b2a8f'},{t:['×2'],v:60,c:'#4cc9f0',x:'#102040'},{t:['حظ','أوفر'],k:'x',c:'#2b1c6b'},{t:['×2'],v:60,c:'#12a36b'},{t:['حظ','أوفر'],k:'x',c:'#3b2a8f'},{t:['حظ','أوفر'],k:'x',c:'#2b1c6b'}];
+var SEG=[{id:'m10',t:['10'],c:'#ffb703',x:'#2a1500'},{id:'x2',t:['×2'],c:'#ff4d6d'},{id:'n',t:['بدون','جائزة'],c:'#2b1c6b'},{id:'m50',t:['50'],c:'#12a36b'},{id:'t',t:['حاول','تاني'],c:'#3b2a8f'},{id:'x5',t:['×5'],c:'#4cc9f0',x:'#102040'},{id:'m100',t:['100'],c:'#ff9f1c',x:'#2a1500'},{id:'f',t:['لفة','مجانية'],c:'#9b5de5'},{id:'n',t:['بدون','جائزة'],c:'#2b1c6b'},{id:'x10',t:['×10'],c:'#e5383b'},{id:'g',t:['لعبة','مجانية'],c:'#0fb5a0'},{id:'m500',t:['500'],c:'#ffd35a',x:'#2a1500'}];
 var SA=360/SEG.length,n=0,fr=0,ang=0,busy=false,rot,NB;
 try{n=+localStorage.getItem('gz_ws')||0}catch(e){}
 function E(p,t,a,x){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);if(x!=null)e.textContent=x;p.appendChild(e);return e}
@@ -1631,7 +1631,7 @@ rot=E(sv,'g',{});
 SEG.forEach(function(s,i){var a=i*SA,m=a+SA/2;
 E(rot,'path',{d:'M0 0L'+pt(a,92)+'A92 92 0 0 1 '+pt(a+SA,92)+'Z',fill:s.c});
 var g=E(rot,'g',{transform:'rotate('+m+')'}),tx={'text-anchor':'middle',fill:s.x||'#fff','font-family':'Lalezar,Tajawal,sans-serif','paint-order':'stroke',stroke:'rgba(0,0,0,.28)','stroke-width':2.2,'stroke-linejoin':'round'};
-if(s.v){tx['font-size']=17;tx.y=-64;E(g,'text',tx,s.t[0]);E(g,'circle',{cx:0,cy:-48,r:4.2,fill:'#ffd35a',stroke:'#c98500','stroke-width':1.2})}
+if(s.t.length===1){tx['font-size']=17;tx.y=-64;E(g,'text',tx,s.t[0]);E(g,'circle',{cx:0,cy:-48,r:4.2,fill:'#ffd35a',stroke:'#c98500','stroke-width':1.2})}
 else{tx['font-size']=9.5;tx.y=-69;E(g,'text',tx,s.t[0]);var t2={};for(var k in tx)t2[k]=tx[k];t2.y=-56;E(g,'text',t2,s.t[1])}
 var b=pt(a,92).split(' ');E(rot,'line',{x1:0,y1:0,x2:b[0],y2:b[1],stroke:'#fff','stroke-opacity':.55,'stroke-width':1.2});
 E(rot,'circle',{cx:b[0],cy:b[1],r:2.8,fill:'#fff',stroke:'#c98500'})});
@@ -1641,7 +1641,8 @@ for(var i=0;i<24;i++){var b=pt(i*15,102).split(' ');E(sv,'circle',{cx:b[0],cy:b[
 E(sv,'circle',{r:19,fill:'url(#wr)',stroke:'#fff','stroke-width':3});E(sv,'circle',{r:8,fill:'#e5383b'});
 W.insertBefore(sv,W.firstChild);W.appendChild(MB);
 function fmt(v){return Math.round(v).toLocaleString('en-US')}
-function upd(){WB.textContent=fmt(Z.get());WF.textContent=fr}
+function upd(){WB.textContent=fmt(Z.get());WF.textContent=fr;WS.textContent=fr>0?'🎁 لفة مجانية ('+fr+')':'لف العجلة'}
+async function wInit(){try{var d=await window.GZAuth.rpc('gz_wheel_init');fr=Number(d.free_spins)||0;upd()}catch(e){}}
 function say(t){MS.textContent=t;MS.classList.remove('pp');void MS.offsetWidth;MS.classList.add('pp')}
 function sleep(ms){return new Promise(function(r){setTimeout(r,ms)})}
 function fx(c,t,ms){var e=document.createElement(t);e.className=c;FX.appendChild(e);setTimeout(function(){e.remove()},ms);return e}
@@ -1658,9 +1659,9 @@ g.gain.setValueAtTime(.001,t);g.gain.linearRampToValueAtTime(.11,t+.7);g.gain.ex
 stop:function(){Z.tone(100,0,.35,'sine',.32,42);sfx.click(0);sfx.click(0)}};
 async function spin(){
 if(busy)return;Z.A();busy=true;WS.disabled=true;
-var res;try{res=await Z.play('wheel',wBet)}catch(e){say(e.message||'تعذر الدفع');busy=false;WS.disabled=false;return}
+var res;try{res=await window.GZAuth.rpc('gz_wheel_play',{p_bet:wBet});res.coins=Number(res.coins);res.prize=Number(res.prize)||0;res.bet=Number(res.bet)||wBet;res.free_spins=Number(res.free_spins)||0;Z.setCoins(res.coins-res.prize)}catch(e){say(e.message||'تعذر الدفع');busy=false;WS.disabled=false;return}
 fr=res.free_spins-(res.kind==='f'?1:0);upd();
-var o={k:res.kind,v:res.prize},ix=[];SEG.forEach(function(s,i){if(o.k==='w'?!!s.v:s.k===o.k)ix.push(i)});
+var o={k:res.kind,v:res.prize},ix=[];SEG.forEach(function(s,i){if(s.id===res.label)ix.push(i)});
 var i=ix[Math.random()*ix.length|0],jit=(Math.random()-.5)*SA*.6,tg=((-(i*SA+SA/2+jit))%360+360)%360,c=((ang%360)+360)%360,dl=((tg-c)%360+360)%360+360*(6+(Math.random()*3|0));
 n++;try{localStorage.setItem('gz_ws',n)}catch(e){}
 say('لفّ لفّ لفّ… 🤞');W.classList.add('go');sfx.start();
@@ -1674,15 +1675,17 @@ var q=Math.floor(-ang/SA);
 if(q!==lk){lk=q;PT.classList.remove('k');void PT.offsetWidth;PT.classList.add('k');if(now-lt>(sp>.6?55:25)){lt=now;sfx.click(sp)}}
 if(k<1)requestAnimationFrame(f);else res()})(t0)});
 W.style.transform='';MB.style.opacity=0;W.classList.remove('go');sfx.stop();await sleep(450);
-if(o.k==='w'){Z.snd.win();rain();var p=fx('pl','div',1900);p.textContent='★';fx('fl','div',950);say('🎉 ربحت '+(o.v/2)+' كوينز (ورهانك رجعلك)');if(navigator.vibrate)navigator.vibrate([60,40,60,40,150])}
-else if(o.k==='f'){fr=res.free_spins;Z.snd.coin();Z.tone(1568,.15,.3,'triangle',.15);say('🎁 لفة مجانية! لف تاني من غير ما تدفع')}
-else if(o.k==='g'){Z.snd.coin();Z.tone(1568,.15,.3,'triangle',.15);say('🎮 جولة أكواب مجانية!');await sleep(1500);close();Z.freeRound()}
-else{Z.snd.lose();say('حظ أوفر! جرّب تاني');W.classList.add('shake');setTimeout(function(){W.classList.remove('shake')},450)}
+var P=fmt(res.prize),k=o.k;
+if(k==='m'||k==='x'){Z.snd.win();rain();var p=fx('pl','div',1900);p.textContent='★';fx('fl','div',950);say(k==='m'?'🎉 ربحت '+fmt(res.prize-res.bet)+' كوينز (ورهانك رجعلك)':'🎉 '+res.label.replace('x','×')+' — ربحت '+P+' كوينز!');if(navigator.vibrate)navigator.vibrate([60,40,60,40,150])}
+else if(k==='f'){fr=res.free_spins;Z.snd.coin();Z.tone(1568,.15,.3,'triangle',.15);say('🎁 لفة مجانية! لف تاني من غير ما تدفع')}
+else if(k==='g'){Z.snd.coin();Z.tone(1568,.15,.3,'triangle',.15);var GN={cups:'الأكواب 🥤',coin:'العملة 🪙',box:'صندوق الحظ 🎁'};say('🎮 لعبة مجانية: '+(GN[res.game]||'مفاجأة')+' …');await sleep(1600);if(res.prize>0){Z.snd.win();rain();say('🎮 ربحت '+P+' كوينز من اللعبة المجانية!')}else{Z.snd.lose();say('🎮 اللعبة المجانية ما كسبتش المرة دي')}}
+else if(k==='t'){Z.tone(660,0,.25,'triangle',.12);say('🔄 حاول مرة أخرى — رجعلك رهانك')}
+else{Z.snd.lose();say('😬 بدون جائزة! جرّب تاني');W.classList.add('shake');setTimeout(function(){W.classList.remove('shake')},450)}
 Z.setCoins(res.coins);upd();busy=false;WS.disabled=false;
 }
-function open(){O.hidden=false;upd();Z.A();document.body.classList.add('locked');requestAnimationFrame(function(){O.classList.add('on')})}
+function open(){O.hidden=false;upd();wInit();Z.A();document.body.classList.add('locked');requestAnimationFrame(function(){O.classList.add('on')})}
 function close(){O.classList.remove('on');document.body.classList.remove('locked');setTimeout(function(){O.hidden=true},350)}
-var wBet=10;GZBet.bar($('#wheel .gctl'),WS,10,function(v){wBet=v;$('#wheel .pz-wheel i').textContent=v;$('#wheel .pz-wheel b').textContent='\u200e+'+v;var gi=$('#wheel .ginfo').firstChild;if(gi)gi.nodeValue='اللفة بـ '+v+' كوينز · لو كسبت تاخد '+v+' مكسب ويرجعلك رهانك · 4 خانات رابحة من 10'});
+var wBet=10;GZBet.bar($('#wheel .gctl'),WS,10,function(v){wBet=v;$('#wheel .pz-wheel i').textContent=v;var gi=$('#wheel .ginfo').firstChild;if(gi)gi.nodeValue='اللفة بـ '+v+' كوينز · جوائز 10–500 · ×2 ×5 ×10 · لفة مجانية · لعبة مجانية'});
 window.openWheel=open;WS.onclick=spin;$('#wx').onclick=close;
 $('#wm').onclick=function(){this.textContent=Z.mute()?'🔇':'🔊'};
 })();
