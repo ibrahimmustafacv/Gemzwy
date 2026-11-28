@@ -4042,5 +4042,37 @@ window.openLottery=open;
 })();
 
 </script>
+<script id="gz-system">
+/* ===== إبقاء الشاشة منوّرة + زر الرجوع في الأندرويد يقفل اللعبة بس ===== */
+(function(){'use strict';
+ /* 1) منع انطفاء الشاشة (Screen Wake Lock) */
+ var wl=null,busyWL=false;
+ async function keepAwake(){
+  if(busyWL||wl||document.hidden||!('wakeLock' in navigator))return;busyWL=true;
+  try{wl=await navigator.wakeLock.request('screen');wl.addEventListener('release',function(){wl=null})}catch(e){wl=null}
+  busyWL=false}
+ keepAwake();
+ document.addEventListener('visibilitychange',function(){if(!document.hidden)keepAwake()});
+ ['pointerdown','touchstart','keydown','click'].forEach(function(ev){document.addEventListener(ev,keepAwake,{passive:true})});
+ setInterval(keepAwake,15000);
+ /* 2) زر الرجوع: لو في لعبة مفتوحة يقفلها بدل ما يطلع من الموقع */
+ var IDS=['crash','slots','wheel','game','roulette','crystal','color','hl','coin','mines','horse','marble','lottery'];
+ var pushed=false,ignore=false;
+ function openGame(){for(var i=0;i<IDS.length;i++){var e=document.getElementById(IDS[i]);if(e&&!e.hidden)return e}return null}
+ function sync(){
+  var g=openGame();
+  if(g&&!pushed){try{history.pushState({gz:1},'')}catch(e){}pushed=true}
+  else if(!g&&pushed){pushed=false;ignore=true;try{history.back()}catch(e){ignore=false}}}
+ var mo=new MutationObserver(sync);
+ IDS.forEach(function(id){var e=document.getElementById(id);if(e)mo.observe(e,{attributes:true,attributeFilter:['hidden']})});
+ window.addEventListener('popstate',function(){
+  if(ignore){ignore=false;return}
+  var g=openGame();if(!g||!pushed)return;
+  pushed=false;
+  var b=g.querySelector('[aria-label="رجوع"]');if(b)b.click();
+  /* لو اللعبة رفضت تقفل (جولة شغالة) نرجّع الحماية عشان الرجوع ما يطلعش من الموقع */
+  setTimeout(function(){if(openGame()&&!pushed){try{history.pushState({gz:1},'')}catch(e){}pushed=true}},500)});
+})();
+</script>
 </body>
 </html>
